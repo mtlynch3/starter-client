@@ -1,6 +1,10 @@
+import NavBarContainer from "../containers/NavBarContainer";
 const AllStudentsContainer = () => {
   return (
-    <h1>All Students View</h1>
+    <div>
+      <NavBarContainer />
+      <h1>All Students View</h1>
+    </div>
   );
 };
 

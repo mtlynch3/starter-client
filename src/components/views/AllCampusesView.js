@@ -1,5 +1,6 @@
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
+import NavBarContainer from "../containers/NavBarContainer";
 
 const AllCampusesView = (props) => {
   if (!props.allCampuses.length) {
@@ -8,6 +9,7 @@ const AllCampusesView = (props) => {
 
   return (
     <div>
+      <NavBarContainer />
       {props.allCampuses.map((campus) => (
         <div key={campus.id}>
           <Link to={`/campus/${campus.id}`}>
