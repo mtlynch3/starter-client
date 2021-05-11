@@ -3,7 +3,6 @@ import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 import { makeStyles } from '@material-ui/core/styles';
-import NavBarContainer from "../containers/NavBarContainer";
 
 import { Link } from 'react-router-dom';
 
@@ -36,12 +35,29 @@ const useStyles = makeStyles(theme => ({
 
 }));
 
-const HomePageView = () => {
+const NavBarContainer = () => {
   const classes = useStyles();
   return (
     <div className={classes.root}>
-      <NavBarContainer/>
-      <div className={classes.greeting}><h1>Home Page</h1></div>
+      <AppBar position="static" elevation={0} className={classes.appBar}>
+        <Toolbar>
+          <Typography variant="h6" className={classes.title} color="inherit" >
+            CRUD App
+          </Typography>
+
+          <Link className={classes.links} to={'/campuses'} >
+            <Button variant="contained" color="primary" style={{marginRight: '10px'}}>
+              All Campuses
+            </Button>
+          </Link>
+
+          <Link className={classes.links} to={'/students'} >
+            <Button variant="contained" color="primary">
+              All Students
+            </Button>
+          </Link>
+        </Toolbar>
+      </AppBar>
     </div>
   );    
 }
@@ -49,4 +65,4 @@ const HomePageView = () => {
 
 
 
-export default HomePageView;
+export default NavBarContainer;

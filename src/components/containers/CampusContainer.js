@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { fetchCampusThunk } from "../../store/thunks";
+import NavBarContainer from "../containers/NavBarContainer";
 
 import { CampusView } from "../views";
 
@@ -12,9 +13,10 @@ class CampusContainer extends Component {
 
   render() {
     return (
-      <CampusView 
-        campus={this.props.campus}
-      />
+      <div>
+        <NavBarContainer />
+        <CampusView campus={this.props.campus} />
+      </div>
     );
   }
 }
