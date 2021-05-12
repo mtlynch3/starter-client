@@ -7,7 +7,7 @@ import { StudentView } from "../views";
 
 class StudentContainer extends Component {
   componentDidMount() {
-    //getting campus ID from url
+    //getting student ID from url
     this.props.fetchStudent(this.props.match.params.id);
   }
 
@@ -15,7 +15,7 @@ class StudentContainer extends Component {
     return (
       <div>
         <NavBarContainer />
-        <StudentView campus={this.props.campus} />
+        <StudentView student={this.props.student} />
       </div>
     );
   }
@@ -24,14 +24,14 @@ class StudentContainer extends Component {
 // map state to props
 const mapState = (state) => {
   return {
-    campus: state.campus,
+    student: state.student,
   };
 };
 
 // map dispatch to props
 const mapDispatch = (dispatch) => {
   return {
-    fetchCampus: (id) => dispatch(fetchStudentThunk(id)),
+    fetchStudent: (id) => dispatch(fetchStudentThunk(id)),
   };
 };
 
