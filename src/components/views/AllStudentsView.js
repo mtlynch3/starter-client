@@ -13,7 +13,7 @@ const AllStudentsView = (props) => {
       <NavBarContainer />
       {props.allStudents.map(({id, firstName, lastName, email, gpa}) => (
         <div key={id}>
-          <Link to={`/campus/${id}`}>
+          <Link to={`/student/${id}`}>
             <h1>{firstName} {lastName}</h1>
           </Link>
           <p>{email} gpa{gpa}</p>
