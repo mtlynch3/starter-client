@@ -32,6 +32,17 @@ export const deleteCampusThunk = (campusId) => async (dispatch) => {
   }
 };
 
+export const editCampusThunk = (campus) => async (dispatch) => {
+  try {
+    let updatedCampus = await axios.put(
+      `/prod/campus/${campus.id}`,
+      campus
+    );
+    dispatch(ac.editCampus(updatedCampus));
+  } catch (err) {
+    console.error(err);
+  }
+};
 //Single campus
 export const fetchCampusThunk = (id) => async (dispatch) => {
   try {
