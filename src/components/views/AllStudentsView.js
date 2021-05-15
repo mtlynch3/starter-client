@@ -1,17 +1,7 @@
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 import NavBarContainer from "../containers/NavBarContainer";
-import { makeStyles } from "@material-ui/styles";
-
-const useStyles = makeStyles({
-  placeholderContent: {
-    border: "5px solid indigo",
-    padding: "10px",
-    margin: "20px",
-    flexDirection: "row",
-    justifyContent: "center",
-  },
-});
+import { useStyles } from "../../styles.js";
 
 const AllStudentsView = ({ allStudents }) => {
   const classes = useStyles();
