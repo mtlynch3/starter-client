@@ -7,7 +7,7 @@ import { StudentView } from '../views';
 
 class StudentContainer extends Component {
   componentDidMount() {
-    this.props.fetchStudent(this.props.params.id);
+    this.props.fetchStudent(this.props.match.params.id);
   }
 
   render() {

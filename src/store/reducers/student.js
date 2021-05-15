@@ -1,7 +1,10 @@
-import { FETCH_STUDENT } from "../actions/actionTypes";
+import { FETCH_STUDENT } from '../actions/actionTypes';
 
-// REDUCER;
-const student = (state={}, action) => {
+const initialState = {
+  student: [],
+};
+
+const student = (state = initialState, action) => {
   switch (action.type) {
     case FETCH_STUDENT:
       return action.payload;
