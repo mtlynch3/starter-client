@@ -12,6 +12,7 @@ const campus = (state = initialState, action) => {
       return state.map((campus) => {
         return campus.id === action.payload.id ? action.payload : campus;
       });
+      
     default:
       return state;
   }

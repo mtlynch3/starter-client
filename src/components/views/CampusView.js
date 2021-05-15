@@ -1,5 +1,3 @@
-
-
 const CampusView = (props) => {
   const {campus} = props;
   //waiting for students array to be populated

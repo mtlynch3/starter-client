@@ -1,22 +1,20 @@
-import * as at from "../actions/actionTypes";
+import * as at from '../actions/actionTypes';
 
 // REDUCER;
-const allStudents = (state=[], action) => {
+const allStudents = (prevState = [], action) => {
   switch (action.type) {
     case at.FETCH_ALL_STUDENTS:
       return action.payload;
     case at.ADD_STUDENT:
-      return [...state, action.payload]
+      return [...prevState, action.payload];
     case at.DELETE_STUDENT:
-      return state.filter(student => student.id!==action.payload);
+      return prevState.filter((student) => student.id !== action.payload);
     case at.EDIT_STUDENT:
-      return state.map(student => { 
-        return (
-          student.id===action.payload.id ? action.payload : student
-        );
+      return prevState.map((student) => {
+        return student.id === action.payload.id ? action.payload : student;
       });
     default:
-      return state;
+      return prevState;
   }
 };
 
