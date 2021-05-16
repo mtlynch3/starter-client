@@ -1,23 +1,30 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { editStudentThunk, fetchStudentThunk } from "../../store/thunks";
+import {
+  addStudentThunk,
+  deleteStudentThunk,
+  editStudentThunk,
+  fetchStudentThunk,
+} from "../../store/thunks";
 import NavBarContainer from "../containers/NavBarContainer";
-import Typography from "@material-ui/core/Typography";
 import {
   Button,
+  ButtonGroup,
   Form,
   FormGroup,
   Input,
   InputGroup,
-  InputGroupAddon,
   Label,
 } from "reactstrap";
+
+// actions enum
+const ACTIONS = Object.freeze({ EDIT: 1, DELETE: 2, CREATE: 3 });
 
 class EditStudentContainer extends Component {
   constructor(props) {
     super(props);
     this.handleChange = this.handleChange.bind(this);
-    // this.state = {};
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
   async componentDidMount() {
     //getting student ID from url
@@ -29,37 +36,50 @@ class EditStudentContainer extends Component {
   handleChange(buttonEvent) {
     // prevent page refresh
     buttonEvent.preventDefault();
-    console.log(buttonEvent.target.name, buttonEvent.target.value);
     this.setState({
       ...this.state,
       [buttonEvent.target.name]: buttonEvent.target.value,
     });
   }
-  // updateState(buttonEvent)
+
+  async handleSubmit(buttonEvent, actionType) {
+    buttonEvent.preventDefault();
+    let newStudent = {};
+    switch (actionType) {
+      case ACTIONS.EDIT:
+        this.props.editStudent(this.state);
+        break;
+      case ACTIONS.CREATE:
+        newStudent = await this.props.createStudent(this.state);
+        this.setState(newStudent);
+        break;
+      case ACTIONS.DELETE:
+        newStudent = await this.props.deleteStudent(this.state);
+        this.setState(newStudent);
+        break;
+      default:
+        console.error("Unexpected action");
+    }
+  }
 
   render() {
     return (
       <div>
         <NavBarContainer />
-        <pre>{JSON.stringify(this.state, null, 4)}</pre>
-        <Form
-          onSubmit={(e) => {
-            e.preventDefault();
-            console.log("Update");
-            this.props.updateStudent(this.state);
-            console.log(this.state);
-          }}
-        >
+        <pre>
+          {JSON.stringify(this.state || "No valid student selected", null, 4)}
+        </pre>
+        <Form>
           <FormGroup>
             <Label for="transaction">Edit Student</Label>
             <InputGroup>
-              <Input
+              {/* <Input
                 type="number"
                 name="id"
                 placeholder={this.state?.id || "ID"}
                 onChange={this.handleChange}
                 step="1"
-              />
+              /> */}
               <Input
                 type="text"
                 name="firstName"
@@ -78,7 +98,7 @@ class EditStudentContainer extends Component {
                 min={0}
                 max={4}
                 type="email"
-                placeholder={this.state?.email || 'Email'}
+                placeholder={this.state?.email || "Email"}
                 name="email"
                 onChange={this.handleChange}
               />
@@ -93,23 +113,28 @@ class EditStudentContainer extends Component {
               />
             </InputGroup>
             <FormGroup />
-            <Button type="submit" value="Submit" color="primary">
-              Submit
-            </Button>
-            <Button
-              value="Delete"
-              color="danger"
-              onClick={() => alert("delte unimplemented")}
-            >
-              Delete
-            </Button>
-            <Button
-              value="create"
-              color="success"
-              onClick={() => alert(" unimplemented")}
-            >
-              Create
-            </Button>
+            <ButtonGroup>
+              <Button
+                color="primary"
+                onClick={(e) => this.handleSubmit(e, ACTIONS.EDIT)}
+              >
+                Edit
+              </Button>
+              <Button
+                value="Delete"
+                color="danger"
+                onClick={(e) => this.handleSubmit(e, ACTIONS.DELETE)}
+              >
+                Delete
+              </Button>
+              <Button
+                value="Create"
+                color="success"
+                onClick={(e) => this.handleSubmit(e, ACTIONS.CREATE)}
+              >
+                Create
+              </Button>
+            </ButtonGroup>
           </FormGroup>
         </Form>
       </div>
@@ -128,7 +153,10 @@ const mapState = (state) => {
 const mapDispatch = (dispatch) => {
   return {
     fetchStudent: (id) => dispatch(fetchStudentThunk(id)),
-    updateStudent: (student) => dispatch(editStudentThunk(student)),
+    editStudent: (student) => dispatch(editStudentThunk(student)),
+    // TODO: Hook these up and test them
+    deleteStudent: (student) => dispatch(deleteStudentThunk(student)),
+    createStudent: (student) => dispatch(addStudentThunk(student)),
   };
 };
 

@@ -34,9 +34,9 @@ export const fetchAllStudentsThunk = () => async (dispatch) => {
   }
 };
 
-export const addStudentThunk = (student) => async (dispatch) => {
+export const addStudentThunk = ({id, ...newStudent}) => async (dispatch) => {
   try {
-    let res = await axios.post(`/prod/student`, student);
+    let res = await axios.post(`/prod/student/`, newStudent);
     dispatch(ac.addStudent(res.data));
   } catch (err) {
     console.error(err);
@@ -56,7 +56,7 @@ export const deleteStudentThunk = (studentId) => async (dispatch) => {
 export const editStudentThunk = ({id, ...rest}) => async (dispatch) => {
   try {
     console.log("Edit student", rest)
-    let updatedStudent = await axios.put(
+    let updatedStudent = await axios.patch(
       `/prod/student/${id}`,
       rest
     );
@@ -73,6 +73,5 @@ export const fetchStudentThunk = (id) => async (dispatch) => {
     dispatch(ac.fetchStudent(res.data));
   } catch (err) {
     console.error(err);
-    // alert(`Student with id ${id} doesn't exist.`)
   }
 };
