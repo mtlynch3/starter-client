@@ -48,18 +48,20 @@ class EditStudentContainer extends Component {
     switch (actionType) {
       case ACTIONS.EDIT:
         this.props.editStudent(this.state);
+        newStudent = await this.props.createStudent(this.state);
         break;
       case ACTIONS.CREATE:
         newStudent = await this.props.createStudent(this.state);
-        this.setState(newStudent);
         break;
       case ACTIONS.DELETE:
+        console.error("Not implemented in backend yet");
         newStudent = await this.props.deleteStudent(this.state);
-        this.setState(newStudent);
         break;
       default:
         console.error("Unexpected action");
     }
+    this.setState(newStudent);
+    console.log(this.state);
   }
 
   render() {
@@ -71,15 +73,8 @@ class EditStudentContainer extends Component {
         </pre>
         <Form>
           <FormGroup>
-            <Label for="transaction">Edit Student</Label>
+            <Label for="transaction">Student Actions</Label>
             <InputGroup>
-              {/* <Input
-                type="number"
-                name="id"
-                placeholder={this.state?.id || "ID"}
-                onChange={this.handleChange}
-                step="1"
-              /> */}
               <Input
                 type="text"
                 name="firstName"
@@ -95,11 +90,9 @@ class EditStudentContainer extends Component {
             </InputGroup>
             <InputGroup>
               <Input
-                min={0}
-                max={4}
                 type="email"
-                placeholder={this.state?.email || "Email"}
                 name="email"
+                placeholder={this.state?.email || "Email"}
                 onChange={this.handleChange}
               />
               <Input
@@ -153,10 +146,9 @@ const mapState = (state) => {
 const mapDispatch = (dispatch) => {
   return {
     fetchStudent: (id) => dispatch(fetchStudentThunk(id)),
-    editStudent: (student) => dispatch(editStudentThunk(student)),
-    // TODO: Hook these up and test them
-    deleteStudent: (student) => dispatch(deleteStudentThunk(student)),
     createStudent: (student) => dispatch(addStudentThunk(student)),
+    editStudent: (student) => dispatch(editStudentThunk(student)),
+    deleteStudent: (student) => dispatch(deleteStudentThunk(student)),
   };
 };
 
