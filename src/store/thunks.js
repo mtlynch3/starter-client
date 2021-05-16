@@ -72,5 +72,6 @@ export const fetchStudentThunk = (id) => async (dispatch) => {
     dispatch(ac.fetchStudent(res.data));
   } catch (err) {
     console.error(err);
+    // alert(`Student with id ${id} doesn't exist.`)
   }
 };
