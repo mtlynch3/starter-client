@@ -21,8 +21,10 @@ class EditStudentContainer extends Component {
   }
   async componentDidMount() {
     //getting student ID from url
-    await this.props.fetchStudent(this.props.match.params.id);
-    this.setState(this.props.student);
+    if (this.props.match.params.id !== undefined) {
+      await this.props.fetchStudent(this.props.match.params.id);
+      this.setState(this.props.student);
+    }
   }
   handleChange(buttonEvent) {
     // prevent page refresh
@@ -54,23 +56,21 @@ class EditStudentContainer extends Component {
               <Input
                 type="number"
                 name="id"
-                placeholder={this.state?.id}
+                placeholder={this.state?.id || "ID"}
                 onChange={this.handleChange}
-                step=".01"
+                step="1"
               />
               <Input
                 type="text"
                 name="firstName"
-                placeholder={this.state?.firstName}
+                placeholder={this.state?.firstName || "First Name"}
                 onChange={this.handleChange}
-                step=".01"
               />
               <Input
                 type="text"
                 name="lastName"
-                placeholder={this.state?.lastName}
+                placeholder={this.state?.lastName || "Last Name"}
                 onChange={this.handleChange}
-                step=".01"
               />
             </InputGroup>
             <InputGroup>
@@ -78,16 +78,15 @@ class EditStudentContainer extends Component {
                 min={0}
                 max={4}
                 type="email"
-                placeholder={this.state?.email}
+                placeholder={this.state?.email || 'Email'}
                 name="email"
                 onChange={this.handleChange}
-                step=".01"
               />
               <Input
                 min={0}
                 max={4}
                 type="number"
-                placeholder="GPA"
+                placeholder={this.state?.gpa || "GPA"}
                 name="gpa"
                 onChange={this.handleChange}
                 step=".01"

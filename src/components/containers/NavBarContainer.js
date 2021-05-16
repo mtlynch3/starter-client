@@ -60,7 +60,7 @@ const NavBarContainer = () => {
           </Typography>
           <LinkButton to={"/campuses"} label={"All Campuses"}/>
           <LinkButton to={"/students"} label={"All Students"}/>
-          <LinkButton to={"/edit/student/6"} label={"Edit Student"}/>
+          <LinkButton to={"/edit/student/"} label={"Edit Student"}/>
         </Toolbar>
       </AppBar>
     </div>
