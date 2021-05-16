@@ -53,11 +53,12 @@ export const deleteStudentThunk = (studentId) => async (dispatch) => {
   }
 };
 
-export const editStudentThunk = (student) => async (dispatch) => {
+export const editStudentThunk = ({id, ...rest}) => async (dispatch) => {
   try {
+    console.log("Edit student", rest)
     let updatedStudent = await axios.put(
-      `/prod/student/${student.id}`,
-      student
+      `/prod/student/${id}`,
+      rest
     );
     dispatch(ac.editStudent(updatedStudent));
   } catch (err) {
