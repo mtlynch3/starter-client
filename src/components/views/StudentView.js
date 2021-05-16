@@ -1,4 +1,4 @@
-const StudentView = (props) => {
+const StudentView = ({student}) => {
   //waiting for students array to be populated
   // if (campus.students === undefined){
   //   return <div>Loading...</div>
@@ -6,7 +6,8 @@ const StudentView = (props) => {
   return (
     <div>
       <h1>Student</h1>
-      <p>{JSON.stringify(props)}</p>
+      {console.log(student)}
+      <p>{JSON.stringify(student)}</p>
       <ul>
         {/* {campus.students.map( student => {
         let name = student.firstname + " " + student.lastname;
