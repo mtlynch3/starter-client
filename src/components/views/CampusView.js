@@ -1,11 +1,11 @@
-const CampusView = (props) => {
-  const { campus } = props;
-  //waiting for students array to be populated
-  // if (campus.students === undefined){
-  //   return <div>Loading...</div>
-  // }
+import { useStyles } from "../../styles.js";
+
+const CampusView = ({campus}) => {
+  const classes = useStyles();
+
+
   return (
-    <div>
+    <div  className={classes.placeholderContent}>
       <h1>{campus.name}</h1>
       <p>{campus.description}</p>
       <ul>
