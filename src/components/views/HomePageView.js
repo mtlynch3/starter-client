@@ -36,7 +36,8 @@ const HomePageView = () => {
   return (
     <div className={classes.root}>
       <NavBarContainer/>
-      <div className={classes.greeting}><h1>Home Page</h1></div>
+      <div className={classes.greeting}><h1>Welcome to Home Page</h1></div>
+      <div className={classes.greeting}><p>Please view all campuses and all students.</p></div>
     </div>
   );    
 }
