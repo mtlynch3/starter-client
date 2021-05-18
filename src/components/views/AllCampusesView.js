@@ -1,5 +1,5 @@
-import PropTypes from "prop-types";
-import { Link } from "react-router-dom";
+import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 
 const AllCampusesView = (props) => {
   if (!props.allCampuses.length) {
@@ -8,6 +8,7 @@ const AllCampusesView = (props) => {
 
   return (
     <div>
+      <h1>All Campuses</h1>
       {props.allCampuses.map((campus) => (
         <div key={campus.id}>
           <Link to={`/campus/${campus.id}`}>
