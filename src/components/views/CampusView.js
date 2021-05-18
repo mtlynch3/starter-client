@@ -10,6 +10,7 @@ const CampusView = (props) => {
     <div>
       <h1>{campus.name}</h1>
       <p>{campus.description}</p>
+      <h3>All Students</h3>
       <ul>
         {campus.students.map((student) => {
           let name = student.firstname + ' ' + student.lastname;
