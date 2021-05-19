@@ -6,17 +6,31 @@ const CampusView = (props) => {
   // if (campus.students === undefined){
   //   return <div>Loading...</div>
   // }
+
+  if (!campus.students.length) {
+    return (
+      <div>
+        <h1>{campus.name}</h1>
+        <p>{campus.description}</p>
+        <p>Address: {campus.address}</p>
+        <img src={campus.imageURL} alt='campus'></img>
+        <h3>{campus.name} has no students</h3>
+      </div>
+    );
+  }
   return (
     <div>
       <h1>{campus.name}</h1>
       <p>{campus.description}</p>
-      <h3>All Students</h3>
+      <p>Address: {campus.address}</p>
+      <img src={campus.imageURL} alt='campus'></img>
+      <h3>{campus.name}'s Students</h3>
       <ul>
         {campus.students.map((student) => {
           let name = student.firstname + ' ' + student.lastname;
           return (
-            <Link to={`/student/${student.id}`}>
-              <li key={student.id}>{name}</li>
+            <Link to={`/student/${student.id}`} key={student.id}>
+              <li>{name}</li>
             </Link>
           );
         })}
