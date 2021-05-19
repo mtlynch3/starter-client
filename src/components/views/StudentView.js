@@ -2,7 +2,6 @@ import { Link } from 'react-router-dom';
 
 const StudentView = (props) => {
   const { student } = props;
-  console.log(student);
   return (
     <div>
       <ul>
