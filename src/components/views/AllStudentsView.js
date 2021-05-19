@@ -1,7 +1,7 @@
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 import NavBarContainer from "../containers/NavBarContainer";
-import { useStyles } from "../../styles.js";
+import { useStyles } from "../../styles/styles.js";
 
 const AllStudentsView = ({ allStudents }) => {
   const classes = useStyles();

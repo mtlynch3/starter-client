@@ -1,4 +1,4 @@
-import { useStyles } from "../../styles.js";
+import { useStyles } from "../../styles/styles.js";
 
 const StudentView = ({student}) => {
   const classes = useStyles();
