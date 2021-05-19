@@ -1,6 +1,7 @@
 import { makeStyles } from '@material-ui/core/styles';
 import NavBarContainer from "../containers/NavBarContainer";
 import campus_image from "./image/campus-image.jpeg";
+import { useStylesHomePage } from "../../styles/homepage_styles";
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -33,12 +34,13 @@ const useStyles = makeStyles(theme => ({
 
 const HomePageView = () => {
   const classes = useStyles();
+  const homePageView = useStylesHomePage();
   return (
     <div className={classes.root}>
       <NavBarContainer/>
       <div className={classes.greeting}><h1>Welcome to Home Page</h1></div>
       <div className={classes.greeting}><p>Please view all campuses and all students.</p></div>
-      <div>
+      <div className={homePageView.homePageContent}> 
       <img src={campus_image} alt="" />;
       </div>
       
