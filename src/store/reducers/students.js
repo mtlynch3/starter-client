@@ -1,7 +1,11 @@
 import * as at from '../actions/actionTypes';
 
+const initialState = {
+  allStudents: [],
+};
+
 // REDUCER;
-const allStudents = (prevState = [], action) => {
+const allStudents = (prevState = initialState, action) => {
   switch (action.type) {
     case at.FETCH_ALL_STUDENTS:
       return action.payload;
