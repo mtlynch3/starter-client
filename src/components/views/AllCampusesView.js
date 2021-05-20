@@ -1,5 +1,11 @@
-import PropTypes from 'prop-types';
-import { Link } from 'react-router-dom';
+import PropTypes from "prop-types";
+import { Link } from "react-router-dom";
+import Navbar from "./Navbar";
+import { deleteCampusThunk } from "../../store/thunks";
+
+const deleteCampus = (id) => {
+  deleteCampusThunk(id);
+};
 
 const AllCampusesView = (props) => {
   if (!props.allCampuses.length) {
@@ -8,7 +14,11 @@ const AllCampusesView = (props) => {
 
   return (
     <div>
+      <Navbar />
       <h1>All Campuses</h1>
+      <button>
+        <Link to={"/addcampus"}>Add Campus</Link>
+      </button>
       {props.allCampuses.map((campus) => (
         <div key={campus.id}>
           <Link to={`/campus/${campus.id}`}>
@@ -16,7 +26,8 @@ const AllCampusesView = (props) => {
           </Link>
           <p>{campus.description}</p>
           <p>{campus.address}</p>
-          <img src={campus.imageURL} alt='campus'></img>
+          <img src={campus.imageURL} alt="campus"></img>
+          <button onClick={deleteCampus(campus.id)}>Delete</button>
         </div>
       ))}
     </div>

@@ -13,10 +13,10 @@ export const fetchAllCampuses = (campuses) => {
   };
 };
 
-export const addCampus = (campus) => {
+export const addCampus = (campuses) => {
   return {
     type: at.ADD_CAMPUS,
-    payload: campus,
+    payload: campuses,
   };
 };
 

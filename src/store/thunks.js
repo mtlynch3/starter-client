@@ -1,5 +1,5 @@
-import * as ac from './actions/actionCreators';
-const axios = require('axios');
+import * as ac from "./actions/actionCreators";
+const axios = require("axios");
 
 // THUNKS
 
@@ -8,6 +8,16 @@ export const fetchAllCampusesThunk = () => async (dispatch) => {
   try {
     let res = await axios.get(`/api/campuses`);
     dispatch(ac.fetchAllCampuses(res.data));
+  } catch (err) {
+    console.error(err);
+  }
+};
+
+export const addCampusThunk = (campus) => async (dispatch) => {
+  try {
+    console.log(campus);
+    let res = await axios.post(`/api/campuses`, campus);
+    dispatch(ac.addCampus(res.data));
   } catch (err) {
     console.error(err);
   }
@@ -22,7 +32,7 @@ export const editCampusThunk = (campus) => async (dispatch) => {
   }
 };
 
-export const deleteCampusThink = (campusId) => async (dispatch) => {
+export const deleteCampusThunk = (campusId) => async (dispatch) => {
   try {
     await axios.delete(`/api/campuses/${campusId}`);
     dispatch(ac.deleteCampus(campusId));

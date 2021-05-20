@@ -1,5 +1,6 @@
-import PropTypes from 'prop-types';
-import { Link } from 'react-router-dom';
+import PropTypes from "prop-types";
+import { Link } from "react-router-dom";
+import Navbar from "./Navbar";
 
 const AllStudentsView = (props) => {
   if (!props.allStudents.length) {
@@ -8,6 +9,7 @@ const AllStudentsView = (props) => {
 
   return (
     <div>
+      <Navbar />
       <h1>All Students</h1>
       {props.allStudents.map((student) => (
         <div key={student.id}>

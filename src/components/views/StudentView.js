@@ -1,9 +1,11 @@
+import Navbar from "./Navbar";
 import { Link } from 'react-router-dom';
 
 const StudentView = (props) => {
   const { student } = props;
   return (
     <div>
+      <Navbar/>
       <ul>
         <li>
           Name: {student.firstname} {student.lastname}
