@@ -1,7 +1,7 @@
-import "./App.css";
+import './App.css';
 
 //Router
-import { Switch, Route } from "react-router-dom";
+import { Switch, Route } from 'react-router-dom';
 //Components
 import {
   HomePageContainer,
@@ -12,15 +12,13 @@ import {
   AddStudentContainer,
   AddCampusContainer,
 } from "./components/containers";
-
-
 // if you create separate components for adding/editing
 // a student or campus, make sure you add routes to those
 // components here
 
 const App = () => {
   return (
-    <div className="App">
+    <div className='App'>
       <Switch>
         <Route exact path="/" component={HomePageContainer} />
         <Route exact path="/campuses" component={AllCampusesContainer} />
