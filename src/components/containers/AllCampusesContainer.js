@@ -5,7 +5,6 @@ import { fetchAllCampusesThunk } from "../../store/thunks";
 import { AllCampusesView } from "../views";
 
 
-
 class AllCampusesContainer extends Component {
   componentDidMount() {
     this.props.fetchAllCampuses();
