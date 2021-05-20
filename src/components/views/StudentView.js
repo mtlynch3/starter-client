@@ -1,8 +1,11 @@
+import Navbar from "./Navbar";
+
 const StudentView = (props) => {
   const { student } = props;
 
   return (
     <div>
+      <Navbar/>
       <ul>
         <li>
           Name: {student.firstname} {student.lastname}
