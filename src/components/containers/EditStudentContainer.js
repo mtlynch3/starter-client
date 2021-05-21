@@ -1,7 +1,9 @@
 import React, { Component } from "react";
 import EditStudentView from "../views/EditStudentView";
+import { connect } from "react-redux";
+import { addStudentThunk } from "../../store/thunks";
 
-export default class EditStudentContainer extends Component {
+class EditStudentContainer extends Component {
   render() {
     return (
       <div>
@@ -10,3 +12,17 @@ export default class EditStudentContainer extends Component {
     );
   }
 }
+
+const mapState = (state) => {
+  return {
+    campus: state.campus,
+  };
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    addStudent: () => dispatch(addStudentThunk()),
+  };
+};
+
+export default connect(mapState, mapDispatchToProps)(EditStudentContainer);

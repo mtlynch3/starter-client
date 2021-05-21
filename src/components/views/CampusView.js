@@ -28,7 +28,7 @@ const CampusView = (props) => {
         <button>
           <Link
             to={{
-              pathname: `/campus/${campus.id}/editstudent`,
+              pathname: `/editcampus`,
               state: {
                 campusId: campus.id,
                 name: campus.name,
