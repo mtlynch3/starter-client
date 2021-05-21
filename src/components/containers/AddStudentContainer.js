@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import AddStudentView from "../views/AddStudentView";
-import PropTypes from "prop-types";
+
 import { connect } from "react-redux";
 import { addStudentThunk } from "../../store/thunks";
 
@@ -8,7 +8,7 @@ class AddStudentContainer extends Component {
   render() {
     return (
       <div>
-        <AddStudentView addCampus={this.props.addStudent} />
+        <AddStudentView />
       </div>
     );
   }

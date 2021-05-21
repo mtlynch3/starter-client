@@ -1,7 +1,8 @@
 import Navbar from "./Navbar";
 import React, { Component } from "react";
+import axios from "axios";
 
-export default class AddCampusView extends Component {
+class AddCampusView extends Component {
   constructor(props) {
     super(props);
     this.state = {};
@@ -9,12 +10,26 @@ export default class AddCampusView extends Component {
     this.formSubmit = this.formSubmit.bind(this);
   }
 
-  formSubmit(event) {
+  async formSubmit(event) {
     event.preventDefault();
-    console.log(JSON.stringify({ name: event.target.campusname.value }));
-    this.props.addCampus(
-      JSON.stringify({ name: event.target.campusname.value })
-    );
+    if (
+      event.target.campusname.value === null ||
+      event.target.campusname.value === ""
+    ) {
+      alert("Please Fill All Required Field");
+      return 0;
+    }
+    await axios
+      .post(`/api/campuses`, {
+        name: event.target.campusname.value,
+      })
+      .then((response) => {
+        console.log(response);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+    window.location.replace("/campuses");
   }
 
   render() {
@@ -24,7 +39,7 @@ export default class AddCampusView extends Component {
 
         <form onSubmit={this.formSubmit}>
           <label>
-            Campus Name
+            Campus Name*
             <input type="text" name="campusname" />
           </label>
           <button type="submit">Add Campus</button>
@@ -33,3 +48,5 @@ export default class AddCampusView extends Component {
     );
   }
 }
+
+export default AddCampusView;
