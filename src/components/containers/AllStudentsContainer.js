@@ -1,12 +1,17 @@
 import { Component } from "react";
-import { fetchAllStudentsThunk } from "../../store/thunks";
+import { addStudentThunk, fetchAllStudentsThunk } from "../../store/thunks";
 import { connect } from "react-redux";
 import AllStudentsView from "../views/AllStudentsView"
+
+let testStudent = {
+  "firstname" : "test",
+  "lastname" : "testpass"
+};
 
 class AllStudentsContainer extends Component {
   componentDidMount() {
     this.props.fetchAllStudents();
-    alert("hello");
+    this.props.addStudent(testStudent);
   }
 
   render() {
@@ -30,6 +35,7 @@ const mapState = (state) => {
 const mapDispatch = (dispatch) => {
   return {
     fetchAllStudents: () => dispatch(fetchAllStudentsThunk()),
+    addStudent: (student) => dispatch(addStudentThunk(student)),
   };
 };
 
