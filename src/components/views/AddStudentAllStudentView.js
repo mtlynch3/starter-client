@@ -3,7 +3,7 @@ import { withRouter } from "react-router-dom";
 import Navbar from "./Navbar";
 import axios from "axios";
 
-class AddStudentView extends Component {
+class AddStudentAllStudentView extends Component {
   constructor(props) {
     super(props);
     this.state = {};
@@ -13,13 +13,9 @@ class AddStudentView extends Component {
 
   async formSubmit(event) {
     event.preventDefault();
-    let str = window.location.pathname;
-    let campusId = str.substring(
-      str.lastIndexOf("c") + 7,
-      str.lastIndexOf("/")
-    );
+
     if (
-      event.target.firstname.value == null ||
+      event.target.firstname.value === null ||
       event.target.firstname.value === "" ||
       event.target.lastname.value === null ||
       event.target.lastname.value === "" ||
@@ -31,7 +27,6 @@ class AddStudentView extends Component {
     }
     await axios
       .post(`/api/students`, {
-        campusId: campusId,
         firstname: event.target.firstname.value,
         lastname: event.target.lastname.value,
         email: event.target.email.value,
@@ -42,7 +37,7 @@ class AddStudentView extends Component {
       .catch((err) => {
         console.log(err);
       });
-    this.props.history.push(`/campus/${campusId}`);
+    this.props.history.push(`/students`);
   }
 
   render() {
@@ -53,15 +48,15 @@ class AddStudentView extends Component {
         <form onSubmit={this.formSubmit}>
           <h1>Add Student</h1>
           <label>
-            First Name
+            First Name*
             <input type="text" name="firstname" />
           </label>
           <label>
-            Last Name
+            Last Name*
             <input type="text" name="lastname" />
           </label>
           <label>
-            Email
+            Email*
             <input type="text" name="email" />
           </label>
           <button>Add Campus</button>
@@ -71,4 +66,4 @@ class AddStudentView extends Component {
   }
 }
 
-export default withRouter(AddStudentView);
+export default withRouter(AddStudentAllStudentView);

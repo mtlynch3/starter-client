@@ -1,14 +1,13 @@
 import React, { Component } from "react";
-import AddStudentView from "../views/AddStudentView";
-
+import EditCampusView from "../views/EditCampusView";
 import { connect } from "react-redux";
 import { addStudentThunk } from "../../store/thunks";
 
-class AddStudentContainer extends Component {
+class EditCampusContainer extends Component {
   render() {
     return (
       <div>
-        <AddStudentView />
+        <EditCampusView />
       </div>
     );
   }
@@ -26,4 +25,4 @@ const mapDispatchToProps = (dispatch) => {
   };
 };
 
-export default connect(mapState, mapDispatchToProps)(AddStudentContainer);
+export default connect(mapState, mapDispatchToProps)(EditCampusContainer);

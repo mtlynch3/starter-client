@@ -1,15 +1,31 @@
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 import Navbar from "./Navbar";
-import { deleteCampusThunk } from "../../store/thunks";
+import axios from "axios";
 
-const deleteCampus = (id) => {
-  deleteCampusThunk(id);
+const deleteCampus = async (id) => {
+  await axios
+    .delete(`/api/campuses/${id}`)
+    .then((response) => {
+      console.log(response);
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+  window.location.replace(`/campuses`);
 };
 
 const AllCampusesView = (props) => {
   if (!props.allCampuses.length) {
-    return <div>There are no campuses.</div>;
+    return (
+      <div>
+        <Navbar />
+        <div>There are no campuses.</div>
+        <button>
+          <Link to={"/addcampus"}>Add Campus</Link>
+        </button>
+      </div>
+    );
   }
 
   return (
@@ -20,14 +36,35 @@ const AllCampusesView = (props) => {
         <Link to={"/addcampus"}>Add Campus</Link>
       </button>
       {props.allCampuses.map((campus) => (
-        <div key={campus.id}>
-          <Link to={`/campus/${campus.id}`}>
-            <h1>{campus.name}</h1>
-          </Link>
-          <p>{campus.description}</p>
-          <p>{campus.address}</p>
-          <img src={campus.imageURL} alt="campus"></img>
-          <button onClick={deleteCampus(campus.id)}>Delete</button>
+        <div>
+          <div key={campus.id}>
+            <Link to={`/campus/${campus.id}`}>
+              <h1>{campus.name}</h1>
+            </Link>
+            <button>
+              <Link
+                to={{
+                  pathname:`/editcampus`,
+                  state: {
+                    campusId: campus.id,
+                    name: campus.name,
+                    location: campus.address,
+                    url: campus.imageURL,
+                    description: campus.description,
+                  },
+                }}
+              >
+                Edit Campus
+              </Link>
+            </button>
+            <button onClick={() => deleteCampus(campus.id)}>
+              Delete Campus
+            </button>
+
+            <p>{campus.description}</p>
+            <p>{campus.address}</p>
+            <img src={campus.imageURL} alt="campus"></img>
+          </div>
         </div>
       ))}
     </div>
