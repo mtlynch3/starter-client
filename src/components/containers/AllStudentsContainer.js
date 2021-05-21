@@ -3,15 +3,11 @@ import { addStudentThunk, fetchAllStudentsThunk } from "../../store/thunks";
 import { connect } from "react-redux";
 import AllStudentsView from "../views/AllStudentsView"
 
-let testStudent = {
-  "firstname" : "test",
-  "lastname" : "testpass"
-};
+
 
 class AllStudentsContainer extends Component {
   componentDidMount() {
     this.props.fetchAllStudents();
-    this.props.addStudent(testStudent);
   }
 
   render() {
