@@ -25,17 +25,17 @@ export default class EditStudentView extends Component {
       firstname: this.state.firstname,
       lastname: this.state.lastname,
       gpa: this.state.gpa,
-      url: this.state.url,
+      imageURL: this.state.url,
     };
     await axios
-      .put(`/api/campuses/${this.state.Id}`, data)
+      .put(`/api/students/${this.state.Id}`, data)
       .then((response) => {
         console.log(response);
       })
       .catch((err) => {
         console.log(err);
       });
-    window.location.replace(`/campuses/${this.state.Id}`);
+    window.location.replace(`/student/${this.state.Id}`);
   }
 
   onChangeFirstName(value) {

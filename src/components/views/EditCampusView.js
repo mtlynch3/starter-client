@@ -35,7 +35,7 @@ export default class EditCampusView extends Component {
       .catch((err) => {
         console.log(err);
       });
-    window.location.replace(`/campuses/${this.state.campusId}`);
+    window.location.replace(`/campus/${this.state.campusId}`);
   }
 
   onChangeName(value) {
