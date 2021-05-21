@@ -59,7 +59,7 @@ const HomePageView = () => {
         </Toolbar>
       </AppBar>
       
-      <div className={classes.greeting}><h1>Home Page</h1></div>
+      {/*<div className={classes.greeting}><h1>{greeting_title}</h1></div>*/}
     </div>
   );    
 }
