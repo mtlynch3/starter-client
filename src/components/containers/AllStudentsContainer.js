@@ -5,20 +5,18 @@ import { fetchAllStudentsThunk } from "../../store/thunks";
 import { AllStudentsView } from "../views";
 
 class AllStudentsContainer extends Component {
+  componentDidMount() {
+    console.log(this.props);
+    this.props.fetchAllStudents();
+  }
 
-    componentDidMount() {
-        this.props.fetchAllStudents();
-    }
-
-
-    render() {
-        return (
-            <AllStudentsView
-                allStudents={this.props.allStudents}
-            />
-        );
-    }
-
+  render() {
+    return (
+      <AllStudentsView
+        allStudents={this.props.allStudents}
+      />
+    );
+  }
 }
 
 // Map state to props;
@@ -37,7 +35,6 @@ const mapDispatch = (dispatch) => {
 
 // Type check props;
 AllStudentsContainer.propTypes = {
-
   allStudents: PropTypes.array.isRequired,
   fetchAllStudents: PropTypes.func.isRequired,
 };
