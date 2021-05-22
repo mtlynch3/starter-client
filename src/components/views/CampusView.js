@@ -1,10 +1,7 @@
-
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 import NavBar from './NavBar'; 
 
-import PropTypes from "prop-types";
-import { Link } from "react-router-dom";
 
 
 const CampusView = (props) => {
@@ -18,13 +15,11 @@ const CampusView = (props) => {
   //no students
 
 
-  return (
-
-    <div>      
+  return (     
     <div>
       <NavBar />
 
-    <div>
+    
 
       <h1>{campus.name}</h1>
       <p>{campus.address}</p>

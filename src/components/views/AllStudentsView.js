@@ -3,27 +3,20 @@ import { Link } from "react-router-dom";
 
 import NavBar from "./NavBar";
 
+
 const AllStudentsView = (props) => {
     if (!props.allStudents.length) {
         return (
-        <div>
-            <NavBar />
-            <h1>There are no students.</h1>
-        </div>
+            <div>
+                <NavBar />
+                <h1>There are no students.</h1>
+            </div>
         );
+        
     }
     return (
         <div>
             <NavBar />
-
-
-const AllStudentsView = (props) => {
-    if (!props.allStudents.length) {
-        return <div>There are no students.</div>;
-    }
-    return (
-        <div>
-
             {props.allStudents.map((student) => {
 
                 console.log(props.allStudents);
