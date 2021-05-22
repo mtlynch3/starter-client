@@ -10,9 +10,9 @@ const AllStudentsView = (props) => {
     <div>
       <div>
         <form className = "addStudentForm" onSubmit = {props.addStudent}>
-          <label htmlFor= "First Name">Enter First Name: </label>
+          <label htmlFor= "firstname">Enter First Name: </label>
           <input type="text" id="firstname" name="firstname" />
-          <label htmlFor = "Last Name"> Enter Last Name: </label>
+          <label htmlFor = "lastname"> Enter Last Name: </label>
           <input type="text" id="lastname" name="lastname" />
           <button type="submit" value= "Add Student">Add Student </button>
         </form>
@@ -22,8 +22,8 @@ const AllStudentsView = (props) => {
           <div key = {student.id}>
             <div> {student.firstname} </div>
             <div> {student.lastname}  </div>
-            <div> {student.createdAt} </div>
-            <div> {student.updatedAt} </div>
+            <div> GPA: {student.gpa} </div>
+            <img src = {student.imageUrl} alt = "Image of Student" width = "150" height = "150" />
             <br></br>
           </div>
         ))}
