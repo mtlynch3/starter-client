@@ -1,5 +1,6 @@
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
+
 import NavBar from "./NavBar";
 
 const AllStudentsView = (props) => {
@@ -14,6 +15,15 @@ const AllStudentsView = (props) => {
     return (
         <div>
             <NavBar />
+
+
+const AllStudentsView = (props) => {
+    if (!props.allStudents.length) {
+        return <div>There are no students.</div>;
+    }
+    return (
+        <div>
+
             {props.allStudents.map((student) => {
 
                 console.log(props.allStudents);
