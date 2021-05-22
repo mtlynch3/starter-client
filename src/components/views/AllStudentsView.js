@@ -38,7 +38,6 @@ const AllStudentsView = (props) => {
     );
 };
 
-
 AllStudentsView.propTypes = {
     allStudents: PropTypes.array.isRequired,
 };
