@@ -3,6 +3,15 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { fetchAllStudentsThunk } from "../../store/thunks";
 import { AllStudentsView } from "../views";
+import StudentActionsController from "./StudentActionsController";
+
+const defaultStudent = {
+  firstName: "First Name",
+  lastName: "Last Name",
+  email: "Email Address",
+  gpa: 1,
+  imageUrl: "url",
+};
 
 class AllStudentsContainer extends Component {
   componentDidMount() {
@@ -10,10 +19,11 @@ class AllStudentsContainer extends Component {
   }
 
   render() {
+    console.log(defaultStudent);
     return (
       <div>
-        {console.log(this.props)}
         <AllStudentsView allStudents={this.props.allStudents} />;
+        <StudentActionsController student={defaultStudent} create />
       </div>
     );
   }

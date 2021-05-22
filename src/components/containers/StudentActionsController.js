@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import { Component } from "react";
 import { connect } from "react-redux";
 import {
   addStudentThunk,
@@ -6,7 +6,6 @@ import {
   editStudentThunk,
   fetchStudentThunk,
 } from "../../store/thunks";
-import NavBarContainer from "../containers/NavBarContainer";
 import {
   Button,
   ButtonGroup,
@@ -17,29 +16,33 @@ import {
   Label,
 } from "reactstrap";
 
-// actions enum
 const ACTIONS = Object.freeze({ EDIT: 1, DELETE: 2, CREATE: 3 });
 
-class EditStudentContainer extends Component {
+class StudentActionsController extends Component {
   constructor(props) {
     super(props);
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
-  }
-  async componentDidMount() {
-    //getting student ID from url
-    if (this.props.match.params.id !== undefined) {
-      await this.props.fetchStudent(this.props.match.params.id);
-      this.setState(this.props.student);
-    }
+    console.log("ctor props", this.props);
   }
   handleChange(buttonEvent) {
     // prevent page refresh
     buttonEvent.preventDefault();
+    console.log(buttonEvent.target.name);
     this.setState({
       ...this.state,
       [buttonEvent.target.name]: buttonEvent.target.value,
     });
+  }
+  componentDidMount() {
+    this.setState(this.props.student);
+  }
+
+  componentDidUpdate(previousProps) {
+    console.log("component changed", this.props, previousProps);
+    if (previousProps.student !== this.props.student) {
+      this.setState(this.props.student);
+    }
   }
 
   async handleSubmit(buttonEvent, actionType) {
@@ -47,8 +50,7 @@ class EditStudentContainer extends Component {
     let newStudent = {};
     switch (actionType) {
       case ACTIONS.EDIT:
-        this.props.editStudent(this.state);
-        newStudent = await this.props.createStudent(this.state);
+        newStudent = await this.props.editStudent(this.state);
         break;
       case ACTIONS.CREATE:
         newStudent = await this.props.createStudent(this.state);
@@ -60,13 +62,14 @@ class EditStudentContainer extends Component {
         console.error("Unexpected action");
     }
     this.setState(newStudent);
-    console.log(this.state);
   }
 
   render() {
+    if (this.state == null) {
+      return <p>No student</p>;
+    }
     return (
       <div>
-        <NavBarContainer />
         <pre>
           {JSON.stringify(this.state || "No valid student selected", null, 4)}
         </pre>
@@ -77,13 +80,19 @@ class EditStudentContainer extends Component {
               <Input
                 type="text"
                 name="firstName"
-                placeholder={this.state?.firstName || "First Name"}
+                value={this.state.firstName || ""}
                 onChange={this.handleChange}
               />
               <Input
                 type="text"
                 name="lastName"
-                placeholder={this.state?.lastName || "Last Name"}
+                value={this.state.lastName || ""}
+                onChange={this.handleChange}
+              />
+              <Input
+                type="text"
+                name="imageUrl"
+                value={this.state.imageUrl || ""}
                 onChange={this.handleChange}
               />
             </InputGroup>
@@ -91,42 +100,47 @@ class EditStudentContainer extends Component {
               <Input
                 type="email"
                 name="email"
-                placeholder={this.state?.email || "Email"}
+                value={this.state.email || ""}
                 onChange={this.handleChange}
               />
               <Input
                 min={0}
                 max={4}
                 type="number"
-                placeholder={this.state?.gpa || "GPA"}
+                value={this.state.gpa || ""}
                 name="gpa"
                 onChange={this.handleChange}
                 step=".01"
               />
             </InputGroup>
             <FormGroup />
-            <ButtonGroup>
-              <Button
-                color="primary"
-                onClick={(e) => this.handleSubmit(e, ACTIONS.EDIT)}
-              >
-                Edit
-              </Button>
-              <Button
-                value="Delete"
-                color="danger"
-                onClick={(e) => this.handleSubmit(e, ACTIONS.DELETE)}
-              >
-                Delete
-              </Button>
-              <Button
-                value="Create"
-                color="success"
-                onClick={(e) => this.handleSubmit(e, ACTIONS.CREATE)}
-              >
-                Create
-              </Button>
-            </ButtonGroup>
+            {!!this.props.create ? (
+              <ButtonGroup>
+                <Button
+                  value="Create"
+                  color="success"
+                  onClick={(e) => this.handleSubmit(e, ACTIONS.CREATE)}
+                >
+                  Create
+                </Button>
+              </ButtonGroup>
+            ) : (
+              <ButtonGroup>
+                <Button
+                  color="primary"
+                  onClick={(e) => this.handleSubmit(e, ACTIONS.EDIT)}
+                >
+                  Edit
+                </Button>
+                <Button
+                  value="Delete"
+                  color="danger"
+                  onClick={(e) => this.handleSubmit(e, ACTIONS.DELETE)}
+                >
+                  Delete
+                </Button>
+              </ButtonGroup>
+            )}
           </FormGroup>
         </Form>
       </div>
@@ -134,21 +148,21 @@ class EditStudentContainer extends Component {
   }
 }
 
-// map state to props
+// Map state to props;
 const mapState = (state) => {
   return {
-    student: state.student,
   };
 };
 
-// map dispatch to props
+// Map dispatch to props;
 const mapDispatch = (dispatch) => {
   return {
-    fetchStudent: (id) => dispatch(fetchStudentThunk(id)),
+    fetchStudent: () => dispatch(fetchStudentThunk()),
     createStudent: (student) => dispatch(addStudentThunk(student)),
     editStudent: (student) => dispatch(editStudentThunk(student)),
     deleteStudent: (student) => dispatch(deleteStudentThunk(student)),
   };
 };
 
-export default connect(mapState, mapDispatch)(EditStudentContainer);
+// Export our store-connected container by default;
+export default connect(mapState, mapDispatch)(StudentActionsController);

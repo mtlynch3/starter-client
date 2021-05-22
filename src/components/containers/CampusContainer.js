@@ -3,12 +3,13 @@ import { connect } from "react-redux";
 import { fetchCampusThunk } from "../../store/thunks";
 import NavBarContainer from "../containers/NavBarContainer";
 
+import CampusActionController from "../containers/CampusActionsController.js";
 import { CampusView } from "../views";
 
 class CampusContainer extends Component {
-  componentDidMount() {
+  async componentDidMount() {
     //getting campus ID from url
-    this.props.fetchCampus(this.props.match.params.id);
+    await this.props.fetchCampus(this.props.match.params.id);
   }
 
   render() {
@@ -16,6 +17,7 @@ class CampusContainer extends Component {
       <div>
         <NavBarContainer />
         <CampusView campus={this.props.campus} />
+        <CampusActionController create />
       </div>
     );
   }

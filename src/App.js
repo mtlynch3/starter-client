@@ -9,7 +9,6 @@ import {
   StudentContainer,
   AllCampusesContainer,
   AllStudentsContainer,
-  EditStudentController
 } from './components/containers';
 
 // if you create separate components for adding/editing 
@@ -22,8 +21,6 @@ const App = () => {
       <Switch>
         <Route exact path="/" component={HomePageContainer} />
         <Route exact path="/home_page" component={HomePageContainer} />
-        <Route exact path="/edit/student/:id" component={EditStudentController} />
-        <Route exact path="/edit/student/" component={EditStudentController} />
         <Route exact path="/campuses" component={AllCampusesContainer} />
         <Route exact path="/campus/:id" component={CampusContainer} />
         <Route exact path="/students" component={AllStudentsContainer} />
