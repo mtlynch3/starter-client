@@ -1,55 +1,65 @@
+import React, { useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import NavBarContainer from "../containers/NavBarContainer";
-import campus_image from "./image/campus-image.jpeg";
-import { useStylesHomePage } from "../../styles/homepage_styles";
+import NavBarContainer from '../containers/NavBarContainer';
+import campus_image from './image/campus.jpg';
+import { Container, Grid } from '@material-ui/core';
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles({
   root: {
-    flexGrow: 1,
+    backgroundImage: `url(${campus_image})`,
+    backgroundPosition: 'center',
+    backgroundRepeat: 'no-repeat',
+    backgroundSize: 'cover',
+    height: '90vh',
+  },
+  container: {
+    width: '80%',
   },
   title: {
     flexGrow: 1,
     textAlign: 'left',
     fontType: 'bold',
-    fontFamily: 'Courier, sans-serif', 
-    fontSize: '35px', 
-    color: '#CDDC39'
+    fontFamily: 'Courier, sans-serif',
+    fontSize: '35px',
+    color: '#CDDC39',
   },
-  appBar:{
-    backgroundColor: '#11153e',
-    shadows: ['none'],
-  },
-  greeting:{
+  greeting: {
     display: 'flex',
     justifyContent: 'center',
     backgroundColor: 'white',
-    width: "50%",
-    margin: "auto",
+    margin: 'auto',
   },
-  links:{
+  links: {
     textDecoration: 'none',
-  }
-
-}));
+  },
+});
 
 const HomePageView = () => {
   const classes = useStyles();
-  const homePageView = useStylesHomePage();
+  const [recentStudents, setRecentStudents] = useState([]);
+  const [recentCampuses, setRecentCampuses] = useState([]);
+
   return (
-    <div className={classes.root}>
-      <NavBarContainer/>
-      <div className={classes.greeting}><h1>Welcome to Home Page</h1></div>
-      <div className={classes.greeting}><p>Please view all campuses and all students.</p></div>
-      <div className={homePageView.homePageContent}> 
-      <img src={campus_image} alt="" />;
+    <>
+      <NavBarContainer />
+      <div className={classes.root}>
+        <Container className={classes.container}>
+          <Grid container spacing={3}>
+            <Grid item xs={12}>
+              <div className={classes.greeting}>test</div>
+            </Grid>
+
+            <Grid item xs={6}>
+              <div className={classes.greeting}>Campus</div>
+            </Grid>
+            <Grid item xs={6}>
+              <div className={classes.greeting}>Student</div>
+            </Grid>
+          </Grid>
+        </Container>
       </div>
-      
-    </div>
-    
-  );    
-}
-
-
-
+    </>
+  );
+};
 
 export default HomePageView;
