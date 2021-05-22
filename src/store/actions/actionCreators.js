@@ -64,7 +64,6 @@ export const deleteStudent = (studentId) => {
   };
 };
 
-
 export const editStudent = (student) => {
   return {
     type: at.EDIT_STUDENT,
@@ -77,5 +76,20 @@ export const fetchStudent = (student) => {
   return {
     type: at.FETCH_STUDENT,
     payload: student,
+  };
+};
+
+// Recents
+export const fetchRecentStudents = (students) => {
+  return {
+    type: at.FETCH_RECENT_STUDENTS,
+    payload: students,
+  };
+};
+
+export const fetchRecentCampuses = (campuses) => {
+  return {
+    type: at.FETCH_RECENT_CAMPUSES,
+    payload: campuses,
   };
 };
