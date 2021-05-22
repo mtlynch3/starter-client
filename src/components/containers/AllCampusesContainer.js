@@ -4,6 +4,7 @@ import { connect } from "react-redux";
 import { fetchAllCampusesThunk } from "../../store/thunks";
 import { AllCampusesView } from "../views";
 
+
 class AllCampusesContainer extends Component {
   componentDidMount() {
     console.log(this.props);
@@ -15,6 +16,7 @@ class AllCampusesContainer extends Component {
       <AllCampusesView
         allCampuses={this.props.allCampuses}
       />
+
     );
   }
 }
