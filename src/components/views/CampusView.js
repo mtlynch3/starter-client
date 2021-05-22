@@ -1,3 +1,9 @@
+<<<<<<< Updated upstream
+=======
+import PropTypes from "prop-types";
+import { Link } from "react-router-dom";
+import NavBar from './NavBar'; 
+>>>>>>> Stashed changes
 
 
 const CampusView = (props) => {
@@ -7,7 +13,12 @@ const CampusView = (props) => {
   //   return <div>Loading...</div>
   // }
   return (
+<<<<<<< Updated upstream
     <div>      
+=======
+    <div>
+      <NavBar />
+>>>>>>> Stashed changes
       <h1>{campus.name}</h1>
       <p>{campus.description}</p>
       <ul>
