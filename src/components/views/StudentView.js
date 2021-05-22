@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 
 const StudentView = (props) => {
     const {student} = props;
+
     console.log(student);
      let campus = student.campus;
 
@@ -26,3 +27,4 @@ const StudentView = (props) => {
 };
 
 export default StudentView;
+

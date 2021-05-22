@@ -8,65 +8,66 @@ import { Link } from 'react-router-dom';
 
 const useStyles = makeStyles(theme => ({
     root: {
-        flexGrow: 1,
+      flexGrow: 1,
     },
     title: {
-        flexGrow: 1,
-        textAlign: 'left',
-        fontType: 'bold',
-        fontFamily: 'Courier, sans-serif',
-        fontSize: '35px',
-        color: '#CDDC39'
+      flexGrow: 1,
+      textAlign: 'left',
+      fontType: 'bold',
+      fontFamily: 'Courier, sans-serif', 
+      fontSize: '35px', 
+      color: '#CDDC39'
     },
     appBar:{
-        backgroundColor: '#11153e',
-        shadows: ['none'],
+      backgroundColor: '#11153e',
+      shadows: ['none'],
     },
     greeting:{
-        display: 'flex',
-        justifyContent: 'center',
-        backgroundColor: 'white',
-        width: "50%",
-        margin: "auto",
+      display: 'flex',
+      justifyContent: 'center',
+      backgroundColor: 'white',
+      width: "50%",
+      margin: "auto",
     },
     links:{
-        textDecoration: 'none',
+      textDecoration: 'none',
     }
-
-}));
+  
+  }));
 
 const NavBar = () => {
     const classes = useStyles();
     return (
-        <div className={classes.root}>
-            <AppBar position="static" elevation={0} className={classes.appBar}>
-                <Toolbar>
-                    <Link className={classes.title} to={'/'}>
-                        <Typography variant="h6" className={classes.title} color="inherit" >
-                            CRUD App
-                        </Typography>
-                    </Link>
+
+      <div className={classes.root}>
+        <AppBar position="static" elevation={0} className={classes.appBar}>
+          <Toolbar>
+            <Link className={classes.title} to={'/'}>
+                <Typography variant="h6" className={classes.title} color="inherit" >
+                CRUD App
+                </Typography>
+            </Link>
+            
+  
+            <Link className={classes.links} to={'/campuses'} >
+              <Button variant="contained" color="primary" style={{marginRight: '10px'}}>
+                All Campuses
+              </Button>
+            </Link>
+  
+            <Link className={classes.links} to={'/students'} >
+              <Button variant="contained" color="primary">
+                All Students
+              </Button>
+            </Link>
+          </Toolbar>
+        </AppBar>
+        
+        
+      </div>
+    );    
+  }
 
 
-                    <Link className={classes.links} to={'/campuses'} >
-                        <Button variant="contained" color="primary" style={{marginRight: '10px'}}>
-                            All Campuses
-                        </Button>
-                    </Link>
 
-                    <Link className={classes.links} to={'/students'} >
-                        <Button variant="contained" color="primary">
-                            All Students
-                        </Button>
-                    </Link>
-                </Toolbar>
-            </AppBar>
-
-
-        </div>
-    );
-}
-
-
-
-export default NavBar;
+  export default NavBar;

@@ -5,6 +5,7 @@ import { fetchAllStudentsThunk } from "../../store/thunks";
 import { AllStudentsView } from "../views";
 
 class AllStudentsContainer extends Component {
+
     componentDidMount() {
         this.props.fetchAllStudents();
     }
@@ -17,26 +18,28 @@ class AllStudentsContainer extends Component {
             />
         );
     }
+
 }
 
 // Map state to props;
 const mapState = (state) => {
-    return {
-        allStudents: state.allStudents,
-    };
+  return {
+    allStudents: state.allStudents,
+  };
 };
 
 // Map dispatch to props;
 const mapDispatch = (dispatch) => {
-    return {
-        fetchAllStudents: () => dispatch(fetchAllStudentsThunk()),
-    };
+  return {
+    fetchAllStudents: () => dispatch(fetchAllStudentsThunk()),
+  };
 };
 
 // Type check props;
 AllStudentsContainer.propTypes = {
-    allStudents: PropTypes.array.isRequired,
-    fetchAllStudents: PropTypes.func.isRequired,
+
+  allStudents: PropTypes.array.isRequired,
+  fetchAllStudents: PropTypes.func.isRequired,
 };
 
 // Export our store-connected container by default;

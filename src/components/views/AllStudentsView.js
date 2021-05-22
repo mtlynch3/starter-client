@@ -1,6 +1,7 @@
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 
+
 const AllStudentsView = (props) => {
     if (!props.allStudents.length) {
         return <div>There are no Students.</div>;
@@ -17,6 +18,7 @@ const AllStudentsView = (props) => {
                     </Link>
                 </div>
             ))}
+
         </div>
     );
 };
@@ -24,5 +26,6 @@ const AllStudentsView = (props) => {
 AllStudentsView.propTypes = {
     allStudents: PropTypes.array.isRequired,
 };
+
 
 export default AllStudentsView;
