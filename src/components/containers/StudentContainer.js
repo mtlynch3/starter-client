@@ -1,7 +1,28 @@
+import React, { Component } from "react";
+import { connect } from "react-redux";
+import { fetchStudentThunk } from "../../store/thunks";
+
+//import { StudentView } from "../views";
+
+
 const StudentContainer = () => {
   return (
     <h1>Single Student View</h1>
   );
 };
 
-export default StudentContainer;
+// map state to props
+const mapState = (state) => {
+  return {
+    student: state.student,
+  };
+};
+
+// map dispatch to props
+const mapDispatch = (dispatch) => {
+  return {
+    fetchStudent: (id) => dispatch(fetchStudentThunk(id)),
+  };
+};
+
+export default connect(mapState, mapDispatch)(StudentContainer);
