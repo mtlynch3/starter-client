@@ -1,10 +1,10 @@
-import AppBar from "@material-ui/core/AppBar";
-import Toolbar from "@material-ui/core/Toolbar";
-import Typography from "@material-ui/core/Typography";
-import Button from "@material-ui/core/Button";
-import { makeStyles } from "@material-ui/core/styles";
+import AppBar from '@material-ui/core/AppBar';
+import Toolbar from '@material-ui/core/Toolbar';
+import Typography from '@material-ui/core/Typography';
+import Button from '@material-ui/core/Button';
+import { makeStyles } from '@material-ui/core/styles';
 
-import { Link } from "react-router-dom";
+import { Link } from 'react-router-dom';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -12,25 +12,25 @@ const useStyles = makeStyles((theme) => ({
   },
   title: {
     flexGrow: 1,
-    textAlign: "left",
-    fontType: "bold",
-    fontFamily: "Courier, sans-serif",
-    fontSize: "35px",
-    color: "#CDDC39",
+    textAlign: 'left',
+    fontType: 'bold',
+    fontFamily: 'Courier, sans-serif',
+    fontSize: '35px',
+    color: '#CDDC39',
   },
   appBar: {
-    backgroundColor: "#11153e",
-    shadows: ["none"],
+    backgroundColor: '#11153e',
+    shadows: ['none'],
   },
   greeting: {
-    display: "flex",
-    justifyContent: "center",
-    backgroundColor: "white",
-    width: "50%",
-    margin: "auto",
+    display: 'flex',
+    justifyContent: 'center',
+    backgroundColor: 'white',
+    width: '50%',
+    margin: 'auto',
   },
   links: {
-    textDecoration: "none",
+    textDecoration: 'none',
   },
 }));
 
@@ -41,7 +41,7 @@ const LinkButton = ({ to, label }) => {
       <Button
         variant="contained"
         color="primary"
-        style={{ marginRight: "10px" }}
+        style={{ marginRight: '10px' }}
       >
         {label}
       </Button>
@@ -56,11 +56,11 @@ const NavBarContainer = () => {
       <AppBar position="static" elevation={0} className={classes.appBar}>
         <Toolbar>
           <Typography variant="h6" className={classes.title} color="inherit">
-            CRUD App
+            Campus Solution
           </Typography>
-          <LinkButton to={"/campuses"} label={"All Campuses"}/>
-          <LinkButton to={"/students"} label={"All Students"}/>
-          <LinkButton to={"/home_page"} label={"Home Page"}/>
+          <LinkButton to={'/campuses'} label={'All Campuses'} />
+          <LinkButton to={'/students'} label={'All Students'} />
+          <LinkButton to={'/home_page'} label={'Home Page'} />
         </Toolbar>
       </AppBar>
     </div>
