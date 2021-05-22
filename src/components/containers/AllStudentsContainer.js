@@ -5,16 +5,18 @@ import { fetchAllStudentsThunk } from "../../store/thunks";
 // import { AllStudentsView } from "../views";
 
 
-const AllStudentsContainer = () => {
+class AllStudentsContainer extends Component{
 
   componentDidMount() {
     console.log(this.props);
     this.props.fetchAllStudents();
   }
 
-  return (
-    <h1>All Students View</h1>
-  );
+  render() {
+    return (
+      <h1>All Students View</h1>
+    );
+  }
 };
 
 const mapState = (state) => {
