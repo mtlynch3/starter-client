@@ -111,7 +111,7 @@ export const fetchStudentThunk = (id) => async (dispatch) => {
   }
 };
 
-export const fetchRecentStudents = () => async (dispatch) => {
+export const fetchRecentStudentsThunk = () => async (dispatch) => {
   try {
     const recentStudents = await axios.get(
       `${BACKEND_URL}/prod/student/recent?=limit=3`
@@ -122,7 +122,7 @@ export const fetchRecentStudents = () => async (dispatch) => {
   }
 };
 
-export const fetchRecentCampuses = () => async (dispatch) => {
+export const fetchRecentCampusesThunk = () => async (dispatch) => {
   try {
     const recentCampuses = await axios.get(
       `${BACKEND_URL}/prod/campus/recent?=limit=3`
