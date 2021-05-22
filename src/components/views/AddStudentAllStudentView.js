@@ -1,7 +1,7 @@
-import React, { Component } from "react";
-import { withRouter } from "react-router-dom";
-import Navbar from "./Navbar";
-import axios from "axios";
+import React, { Component } from 'react';
+import { withRouter } from 'react-router-dom';
+import Navbar from './Navbar';
+import axios from 'axios';
 
 class AddStudentAllStudentView extends Component {
   constructor(props) {
@@ -16,13 +16,13 @@ class AddStudentAllStudentView extends Component {
 
     if (
       event.target.firstname.value === null ||
-      event.target.firstname.value === "" ||
+      event.target.firstname.value === '' ||
       event.target.lastname.value === null ||
-      event.target.lastname.value === "" ||
+      event.target.lastname.value === '' ||
       event.target.email.value === null ||
-      event.target.email.value === ""
+      event.target.email.value === ''
     ) {
-      alert("Please Fill All Required Field");
+      alert('Please Fill All Required Field');
       return 0;
     }
     await axios
@@ -49,17 +49,17 @@ class AddStudentAllStudentView extends Component {
           <h1>Add Student</h1>
           <label>
             First Name*
-            <input type="text" name="firstname" />
+            <input type='text' name='firstname' />
           </label>
           <label>
             Last Name*
-            <input type="text" name="lastname" />
+            <input type='text' name='lastname' />
           </label>
           <label>
             Email*
-            <input type="text" name="email" />
+            <input type='text' name='email' />
           </label>
-          <button>Add Campus</button>
+          <button>Add Student</button>
         </form>
       </div>
     );
