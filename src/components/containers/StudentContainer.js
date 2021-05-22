@@ -6,6 +6,12 @@ import { fetchStudentThunk } from "../../store/thunks";
 
 
 const StudentContainer = () => {
+
+  componentDidMount() {
+    //getting campus ID from url
+    this.props.fetchStudent(this.props.match.params.id);
+  }
+
   return (
     <h1>Single Student View</h1>
   );

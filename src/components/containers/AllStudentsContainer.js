@@ -6,6 +6,12 @@ import { fetchAllStudentsThunk } from "../../store/thunks";
 
 
 const AllStudentsContainer = () => {
+
+  componentDidMount() {
+    console.log(this.props);
+    this.props.fetchAllStudents();
+  }
+
   return (
     <h1>All Students View</h1>
   );
