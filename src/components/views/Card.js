@@ -7,7 +7,7 @@ import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 import { sizing } from '@material-ui/system';
 import Box from '@material-ui/core/Box';
-//import './style/Card.css'
+
 
 const useStyles = makeStyles(theme => ({
     background: 'linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)',

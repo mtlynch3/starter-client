@@ -2,6 +2,7 @@ import Button from '@material-ui/core/Button';
 import { Link } from 'react-router-dom';
 import './style/Student.css'
 import Header from "./Header.js"
+import CampusCardView from "./CampusCard.js";
 
 const StudentView = (props) => {
   const {student} = props;
@@ -40,9 +41,7 @@ const StudentView = (props) => {
 
       <div id = "campus">
         <h1> Campus </h1>
-        <ul>
-          <p> No campus found.  </p>
-        </ul>
+        <p> This student is not registered to a campus </p>
       </div>
 
       </div>
@@ -70,11 +69,9 @@ const StudentView = (props) => {
     </div>
 
     <div id = "campus">
-      <h1> Campus </h1>
-      <ul>
-        <p> {student.campus.name} </p>
-        <p> {student.campus.description} </p>
-      </ul>
+      <Header heading ='Campus' buttonLabel ='Change Campus'/>
+      <CampusCardView campus={student.campus}/>
+
     </div>
 
     </div>
