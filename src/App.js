@@ -10,7 +10,7 @@ import {
   AllCampusesContainer,
   AllStudentsContainer,
   AddCampusContainer,
-  AddStudentContainer
+  AddStudentContainer, EditStudentContainer
 } from './components/containers';
 import NavBar from "./components/views/NavBar.js"
 
@@ -28,6 +28,7 @@ const App = () => {
         <Route exact path="/campus/:id" component={CampusContainer} />
         <Route exact path="/add-campus" component={AddCampusContainer} />
         <Route exact path="/add-student" component={AddStudentContainer}/>
+        <Route exact path="/edit-student/:id" component={EditStudentContainer}/>
         <Route exact path="/students" component={AllStudentsContainer} />
         <Route exact path="/student/:id" component={StudentContainer} />
       </Switch>
