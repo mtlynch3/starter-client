@@ -36,7 +36,8 @@ EditStudentContainer.propTypes = {
   editStudent: PropTypes.func.isRequired,
   allCampuses: PropTypes.array.isRequired,
   fetchAllCampuses: PropTypes.func.isRequired,
-  fetchStudent: PropTypes.func.isRequired
+  fetchStudent: PropTypes.func.isRequired,
+  student: PropTypes.object.isRequired
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(EditStudentContainer);
