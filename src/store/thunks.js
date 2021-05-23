@@ -1,6 +1,6 @@
-import * as ac from "./actions/actionCreators";
-const axios = require("axios");
-const BACKEND_URL = "https://r1chy5zeeh.execute-api.us-east-1.amazonaws.com";
+import * as ac from './actions/actionCreators';
+const axios = require('axios');
+const BACKEND_URL = 'https://r1chy5zeeh.execute-api.us-east-1.amazonaws.com';
 
 // THUNKS
 
@@ -108,5 +108,27 @@ export const fetchStudentThunk = (id) => async (dispatch) => {
     dispatch(ac.fetchStudent(res.data));
   } catch (err) {
     console.error(err);
+  }
+};
+
+export const fetchRecentStudentsThunk = () => async (dispatch) => {
+  try {
+    const recentStudents = await axios.get(
+      `${BACKEND_URL}/prod/student/recent?=limit=3`
+    );
+    dispatch(ac.fetchRecentStudents(recentStudents));
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+export const fetchRecentCampusesThunk = () => async (dispatch) => {
+  try {
+    const recentCampuses = await axios.get(
+      `${BACKEND_URL}/prod/campus/recent?=limit=3`
+    );
+    dispatch(ac.fetchRecentCampuses(recentCampuses));
+  } catch (error) {
+    console.error(error);
   }
 };

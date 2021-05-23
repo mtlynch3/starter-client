@@ -1,36 +1,29 @@
-import AppBar from "@material-ui/core/AppBar";
-import Toolbar from "@material-ui/core/Toolbar";
-import Typography from "@material-ui/core/Typography";
-import Button from "@material-ui/core/Button";
-import { makeStyles } from "@material-ui/core/styles";
+import AppBar from '@material-ui/core/AppBar';
+import Toolbar from '@material-ui/core/Toolbar';
+import Typography from '@material-ui/core/Typography';
+import Button from '@material-ui/core/Button';
+import { makeStyles } from '@material-ui/core/styles';
 
-import { Link } from "react-router-dom";
+import { Link } from 'react-router-dom';
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    flexGrow: 1,
+    // flexGrow: 1,
   },
   title: {
     flexGrow: 1,
-    textAlign: "left",
-    fontType: "bold",
-    fontFamily: "Courier, sans-serif",
-    fontSize: "35px",
-    color: "#CDDC39",
+    textAlign: 'left',
+    fontType: 'bold',
+    fontFamily: 'Courier, sans-serif',
+    fontSize: '35px',
+    color: '#CDDC39',
   },
   appBar: {
-    backgroundColor: "#11153e",
-    shadows: ["none"],
-  },
-  greeting: {
-    display: "flex",
-    justifyContent: "center",
-    backgroundColor: "white",
-    width: "50%",
-    margin: "auto",
+    backgroundColor: '#11153e',
+    shadows: ['none'],
   },
   links: {
-    textDecoration: "none",
+    textDecoration: 'none',
   },
 }));
 
@@ -41,7 +34,7 @@ const LinkButton = ({ to, label }) => {
       <Button
         variant="contained"
         color="primary"
-        style={{ marginRight: "10px" }}
+        style={{ marginRight: '10px' }}
       >
         {label}
       </Button>
@@ -52,15 +45,18 @@ const LinkButton = ({ to, label }) => {
 const NavBarContainer = () => {
   const classes = useStyles();
   return (
-    <div className={classes.root}>
+    <div>
       <AppBar position="static" elevation={0} className={classes.appBar}>
         <Toolbar>
+          <Link to="/"></Link>
           <Typography variant="h6" className={classes.title} color="inherit">
-            CRUD App
+            <Link to="/" className={classes.links}>
+              Campus Solution
+            </Link>
           </Typography>
-          <LinkButton to={"/campuses"} label={"All Campuses"}/>
-          <LinkButton to={"/students"} label={"All Students"}/>
-          <LinkButton to={"/home_page"} label={"Home Page"}/>
+          <LinkButton to={'/campuses'} label={'Campuses'} />
+          <LinkButton to={'/students'} label={'Students'} />
+          {/* <LinkButton to={'/home_page'} label={'Home Page'} /> */}
         </Toolbar>
       </AppBar>
     </div>
