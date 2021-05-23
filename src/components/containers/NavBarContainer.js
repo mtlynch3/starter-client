@@ -8,7 +8,7 @@ import { Link } from 'react-router-dom';
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    flexGrow: 1,
+    // flexGrow: 1,
   },
   title: {
     flexGrow: 1,
@@ -21,13 +21,6 @@ const useStyles = makeStyles((theme) => ({
   appBar: {
     backgroundColor: '#11153e',
     shadows: ['none'],
-  },
-  greeting: {
-    display: 'flex',
-    justifyContent: 'center',
-    backgroundColor: 'white',
-    width: '50%',
-    margin: 'auto',
   },
   links: {
     textDecoration: 'none',
@@ -52,15 +45,18 @@ const LinkButton = ({ to, label }) => {
 const NavBarContainer = () => {
   const classes = useStyles();
   return (
-    <div className={classes.root}>
+    <div>
       <AppBar position="static" elevation={0} className={classes.appBar}>
         <Toolbar>
+          <Link to="/"></Link>
           <Typography variant="h6" className={classes.title} color="inherit">
-            Campus Solution
+            <Link to="/" className={classes.links}>
+              Campus Solution
+            </Link>
           </Typography>
-          <LinkButton to={'/campuses'} label={'All Campuses'} />
-          <LinkButton to={'/students'} label={'All Students'} />
-          <LinkButton to={'/home_page'} label={'Home Page'} />
+          <LinkButton to={'/campuses'} label={'Campuses'} />
+          <LinkButton to={'/students'} label={'Students'} />
+          {/* <LinkButton to={'/home_page'} label={'Home Page'} /> */}
         </Toolbar>
       </AppBar>
     </div>

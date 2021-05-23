@@ -1,16 +1,16 @@
-import { Component } from "react";
-import PropTypes from "prop-types";
-import { connect } from "react-redux";
-import { fetchAllStudentsThunk } from "../../store/thunks";
-import { AllStudentsView } from "../views";
-import StudentActionsController from "./StudentActionsController";
+import { Component } from 'react';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import { fetchAllStudentsThunk } from '../../store/thunks';
+import { AllStudentsView } from '../views';
+import StudentActionsController from './StudentActionsController';
 
 const defaultStudent = {
-  firstName: "First Name",
-  lastName: "Last Name",
-  email: "Email Address",
+  firstName: 'First Name',
+  lastName: 'Last Name',
+  email: 'Email Address',
   gpa: 1,
-  imageUrl: "url",
+  imageUrl: 'url',
 };
 
 class AllStudentsContainer extends Component {
