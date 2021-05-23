@@ -66,7 +66,7 @@ class AddCampusView extends Component {
     if (this.state.address === '')
       newErrors.address = "Address can't be empty.";
     if (!validator.isAlphanumeric(this.state.address, 'en-US', { ignore: " -" }))
-      newError.address = "Address can only contain numbers or letters.";
+      newErrors.address = "Address can only contain numbers or letters.";
 
     // description
     if (this.state.description === '')
