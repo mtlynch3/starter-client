@@ -71,7 +71,9 @@ class AddCampusView extends Component {
   render() {
     return (
       <Container>
+        <div className ="form-container">
         <h1 className="form-heading">Add Campus</h1>
+        </div>
         <FormGroup onSubmit={this.submit}>
           <TextField
             id="name"
