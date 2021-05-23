@@ -1,10 +1,4 @@
 import { Link } from "react-router-dom";
-/*
-- [ ] Write a component to display a single student with the following information:
-- [] Clicking on a student from the all-students view should navigate to show that student in the single-student view
-- [ ] Clicking on the name of a student in the single-campus view should navigate to show that student in the single-student view
-- [ ] Clicking on the name of a campus in the single-student view should navigate to show that campus in the single-campus view
-*/
 
 const StudentView = (props) => {
   return (
