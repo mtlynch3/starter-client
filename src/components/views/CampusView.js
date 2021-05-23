@@ -29,7 +29,14 @@ const CampusView = (props) => {
         </div>
       </div>
       <div id = "student">
-        <h1> Students on Campus </h1>
+        <div id = "student-head">
+          <h1> Students on Campus </h1>
+          <Link to={'/add-student'} >
+          <Button variant="contained" color="primary">
+            Add Student
+          </Button>
+          </Link>
+        </div>
         <ul>
         {campus.students.map( student => {
           let name = student.firstname + " " + student.lastname;
