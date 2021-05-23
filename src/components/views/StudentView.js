@@ -15,7 +15,7 @@ const StudentView = (props) => {
       <div> Full Name: {props.student.firstname} {props.student.lastname} </div>
       <img src = {props.student.imageUrl} alt="Student Portrait" width = "150" height = "150" />
       <div> GPA: {props.student.gpa} </div>
-      {props.student.campus === undefined  // A campus' name is not-null, so this works
+      {props.student.campus == null 
         ? <div> This student belongs to no campus. </div>
         : <Link to={`/campus/${props.student.campusId}`}> {props.student.campus.name} </Link>
       }

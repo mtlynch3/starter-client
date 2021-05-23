@@ -1,13 +1,12 @@
 import { Component } from "react";
-import { fetchStudentThunk, fetchCampusThunk} from "../../store/thunks";
+import { fetchStudentThunk} from "../../store/thunks";
 import { connect } from "react-redux";
 import StudentView from "../views/StudentView"
 
 class StudentContainer extends Component {
 
-  componentDidMount() {
-    this.props.fetchStudent(this.props.match.params.id);
-    // this.props.fetchCampus(this.props.match.params.student.campusId);
+  async componentDidMount() {
+    await this.props.fetchStudent(this.props.match.params.id);
   }
 
   render () {
@@ -28,7 +27,6 @@ const mapState = (state) => {
 const mapDispatch = (dispatch) => {
   return {
     fetchStudent: (id) => dispatch(fetchStudentThunk(id)),
-    fetchCampus: (id) => dispatch(fetchCampusThunk(id))
   };
 };
 
