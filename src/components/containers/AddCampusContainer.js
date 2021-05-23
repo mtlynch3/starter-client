@@ -5,7 +5,7 @@ import { AddCampusView } from '../views';
 
 const AddCampusContainer = (props) => {
   return (
-    <AddCampusView allCampus={props.allCampus}/>
+    <AddCampusView addCampus={props.addCampus}/>
   );
 }
 
