@@ -7,7 +7,6 @@ const AllStudentsView = (props) => {
   }
 
   return (
-
     <div>
       {props.allStudents.map((student) => (
         <div key={student.id}>
