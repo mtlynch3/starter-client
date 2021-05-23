@@ -64,13 +64,29 @@ export default class EditStudentView extends Component {
 
   render() {
     return (
-      <div>
+      <div
+        style={{
+          backgroundColor: "#265077",
+          height: "100vh",
+        }}
+      >
         <Navbar />
 
         <form onSubmit={this.handlePut}>
-          <h1>Edit Campus</h1>
-          <label>
-            Student First Name
+          <h1
+            style={{
+              margin: "20px",
+            }}
+          >
+            Edit Student
+          </h1>
+          <label
+            style={{
+              display: "block",
+              margin: "20px",
+            }}
+          >
+            First Name{"  "}
             <input
               type="text"
               name="name"
@@ -78,8 +94,13 @@ export default class EditStudentView extends Component {
               onChange={this.onChangeFirstName}
             />
           </label>
-          <label>
-            Student Last Name
+          <label
+            style={{
+              display: "block",
+              margin: "20px",
+            }}
+          >
+            Last Name{" "}
             <input
               type="text"
               name="name"
@@ -87,8 +108,13 @@ export default class EditStudentView extends Component {
               onChange={this.onChangeLastName}
             />
           </label>
-          <label>
-            GPA
+          <label
+            style={{
+              display: "block",
+              margin: "20px",
+            }}
+          >
+            GPA{" "}
             <input
               type="text"
               name="location"
@@ -96,8 +122,13 @@ export default class EditStudentView extends Component {
               onChange={this.onChangeGpa}
             />
           </label>
-          <label>
-            Student URL
+          <label
+            style={{
+              display: "block",
+              margin: "20px",
+            }}
+          >
+            URL{" "}
             <input
               type="text"
               name="img"
@@ -106,7 +137,18 @@ export default class EditStudentView extends Component {
             />
           </label>
 
-          <button>Save Changes</button>
+          <button
+            style={{
+              display: "block",
+              margin: "20px",
+              backgroundColor: "#2d5f5d",
+              borderRadius: "5px",
+              border: "0px",
+              padding: "15px",
+            }}
+          >
+            Save Changes
+          </button>
         </form>
       </div>
     );

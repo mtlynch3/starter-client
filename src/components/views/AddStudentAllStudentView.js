@@ -1,7 +1,7 @@
-import React, { Component } from 'react';
-import { withRouter } from 'react-router-dom';
-import Navbar from './Navbar';
-import axios from 'axios';
+import React, { Component } from "react";
+import { withRouter } from "react-router-dom";
+import Navbar from "./Navbar";
+import axios from "axios";
 
 class AddStudentAllStudentView extends Component {
   constructor(props) {
@@ -16,13 +16,13 @@ class AddStudentAllStudentView extends Component {
 
     if (
       event.target.firstname.value === null ||
-      event.target.firstname.value === '' ||
+      event.target.firstname.value === "" ||
       event.target.lastname.value === null ||
-      event.target.lastname.value === '' ||
+      event.target.lastname.value === "" ||
       event.target.email.value === null ||
-      event.target.email.value === ''
+      event.target.email.value === ""
     ) {
-      alert('Please Fill All Required Field');
+      alert("Please Fill All Required Field");
       return 0;
     }
     await axios
@@ -42,24 +42,61 @@ class AddStudentAllStudentView extends Component {
 
   render() {
     return (
-      <div>
+      <div
+        style={{
+          backgroundColor: "#265077",
+          height: "100%",
+        }}
+      >
         <Navbar />
 
         <form onSubmit={this.formSubmit}>
-          <h1>Add Student</h1>
-          <label>
-            First Name*
-            <input type='text' name='firstname' />
+          <h1
+            style={{
+              margin: "20px",
+            }}
+          >
+            Add Student
+          </h1>
+          <label
+            style={{
+              display: "block",
+              margin: "20px",
+            }}
+          >
+            First Name {"  "}
+            <input type="text" name="firstname" />
           </label>
-          <label>
-            Last Name*
-            <input type='text' name='lastname' />
+          <label
+            style={{
+              display: "block",
+              margin: "20px",
+            }}
+          >
+            Last Name {"  "}
+            <input type="text" name="lastname" />
           </label>
-          <label>
-            Email*
-            <input type='text' name='email' />
+          <label
+            style={{
+              display: "block",
+              margin: "20px",
+            }}
+          >
+            Email {"  "}
+            <input type="text" name="email" />
           </label>
-          <button>Add Student</button>
+          <button
+            style={{
+              display: "block",
+              margin: "20px",
+              backgroundColor: "#2d5f5d",
+              borderRadius: "5px",
+              border: "0px",
+              padding: "15px",
+            }}
+          >
+            Add Student
+          </button>
         </form>
       </div>
     );

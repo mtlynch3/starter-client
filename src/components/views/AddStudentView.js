@@ -1,7 +1,7 @@
-import React, { Component } from 'react';
-import { withRouter } from 'react-router-dom';
-import Navbar from './Navbar';
-import axios from 'axios';
+import React, { Component } from "react";
+import { withRouter } from "react-router-dom";
+import Navbar from "./Navbar";
+import axios from "axios";
 
 class AddStudentView extends Component {
   constructor(props) {
@@ -15,18 +15,18 @@ class AddStudentView extends Component {
     event.preventDefault();
     let str = window.location.pathname;
     let campusId = str.substring(
-      str.lastIndexOf('c') + 7,
-      str.lastIndexOf('/')
+      str.lastIndexOf("c") + 7,
+      str.lastIndexOf("/")
     );
     if (
       event.target.firstname.value == null ||
-      event.target.firstname.value === '' ||
+      event.target.firstname.value === "" ||
       event.target.lastname.value === null ||
-      event.target.lastname.value === '' ||
+      event.target.lastname.value === "" ||
       event.target.email.value === null ||
-      event.target.email.value === ''
+      event.target.email.value === ""
     ) {
-      alert('Please Fill All Required Field');
+      alert("Please Fill All Required Field");
       return 0;
     }
     await axios
@@ -53,16 +53,16 @@ class AddStudentView extends Component {
         <form onSubmit={this.formSubmit}>
           <h1>Add Student</h1>
           <label>
-            First Name
-            <input type='text' name='firstname' />
+            Name
+            <input type="text" name="firstname" />
           </label>
           <label>
             Last Name
-            <input type='text' name='lastname' />
+            <input type="text" name="lastname" />
           </label>
           <label>
             Email
-            <input type='text' name='email' />
+            <input type="text" name="email" />
           </label>
           <button>Add Student</button>
         </form>

@@ -13,10 +13,10 @@ const useStyles = makeStyles((theme) => ({
     fontType: "bold",
     fontFamily: "Courier, sans-serif",
     fontSize: "35px",
-    color: "#CDDC39",
+    color: "white",
   },
   appBar: {
-    backgroundColor: "#11153e",
+    backgroundColor: "#022140",
     shadows: ["none"],
   },
 
@@ -31,22 +31,30 @@ const Navbar = () => {
     <div>
       <AppBar position="static" elevation={0} className={classes.appBar}>
         <Toolbar>
-          <Typography variant="h6" className={classes.title} color="inherit">
+          <Typography
+            variant="h6"
+            className={classes.title}
+            style={{
+              margin: "20px",
+            }}
+          >
             CRUD App
           </Typography>
 
           <Link className={classes.links} to={"/campuses"}>
             <Button
               variant="contained"
-              color="primary"
-              style={{ marginRight: "10px" }}
+              style={{ marginRight: "10px", backgroundColor: "#2D5F5D" }}
             >
               All Campuses
             </Button>
           </Link>
 
           <Link className={classes.links} to={"/students"}>
-            <Button variant="contained" color="primary">
+            <Button
+              variant="contained"
+              style={{ marginRight: "10px", backgroundColor: "#2D5F5D" }}
+            >
               All Students
             </Button>
           </Link>

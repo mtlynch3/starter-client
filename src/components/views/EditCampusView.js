@@ -64,13 +64,29 @@ export default class EditCampusView extends Component {
 
   render() {
     return (
-      <div>
+      <div
+        style={{
+          backgroundColor: "#265077",
+          height: "100vh",
+        }}
+      >
         <Navbar />
 
         <form onSubmit={this.handlePut}>
-          <h1>Edit Campus</h1>
-          <label>
-            Campus Name
+          <h1
+            style={{
+              margin: "20px",
+            }}
+          >
+            Edit Campus
+          </h1>
+          <label
+            style={{
+              display: "block",
+              margin: "20px",
+            }}
+          >
+            Name {"  "}
             <input
               type="text"
               name="name"
@@ -78,8 +94,13 @@ export default class EditCampusView extends Component {
               onChange={this.onChangeName}
             />
           </label>
-          <label>
-            Campus Location
+          <label
+            style={{
+              display: "block",
+              margin: "20px",
+            }}
+          >
+            Location {"  "}
             <input
               type="text"
               name="location"
@@ -87,8 +108,13 @@ export default class EditCampusView extends Component {
               onChange={this.onChangeLocation}
             />
           </label>
-          <label>
-            Campus Image URL
+          <label
+            style={{
+              display: "block",
+              margin: "20px",
+            }}
+          >
+            Image URL {"  "}
             <input
               type="text"
               name="img"
@@ -96,8 +122,13 @@ export default class EditCampusView extends Component {
               onChange={this.onChangeUrl}
             />
           </label>
-          <label>
-            Description
+          <label
+            style={{
+              display: "block",
+              margin: "20px",
+            }}
+          >
+            Description {"  "}
             <input
               type="text"
               name="description"
@@ -105,7 +136,18 @@ export default class EditCampusView extends Component {
               onChange={this.onChangeDescription}
             />
           </label>
-          <button>Save Changes</button>
+          <button
+            style={{
+              display: "block",
+              margin: "20px",
+              backgroundColor: "#2d5f5d",
+              borderRadius: "5px",
+              border: "0px",
+              padding: "15px",
+            }}
+          >
+            Save Changes
+          </button>
         </form>
       </div>
     );

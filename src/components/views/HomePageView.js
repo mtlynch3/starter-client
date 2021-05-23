@@ -32,10 +32,23 @@ const useStyles = makeStyles((theme) => ({
 const HomePageView = () => {
   const classes = useStyles();
   return (
-    <div className={classes.root}>
+    <div
+      style={{
+        backgroundColor: "#265077",
+        height: "100%",
+      }}
+    >
       <Navbar />
-      <div className={classes.greeting}>
-        <h1>Home Page</h1>
+      <div
+        style={{
+          marginRight: "10px",
+          backgroundColor: "#2D5F5D",
+          padding: "100px",
+          margin: "50px",
+          borderRadius: "25px",
+        }}
+      >
+        <h1>Welcome to The Students and Campuses Database</h1>
       </div>
     </div>
   );

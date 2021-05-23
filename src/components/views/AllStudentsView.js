@@ -8,14 +8,44 @@ const AllStudentsView = (props) => {
   }
 
   return (
-    <div>
+    <div
+      style={{
+        backgroundColor: "#265077",
+        height: "100vh",
+      }}
+    >
       <Navbar />
-      <button>
+      <button
+        style={{
+          display: "inline",
+          margin: "20px",
+          backgroundColor: "#2d5f5d",
+          borderRadius: "5px",
+          border: "0px",
+          padding: "15px",
+        }}
+      >
         <Link to={"/addstudent"}>Add Student</Link>
       </button>
-      <h1>All Students</h1>
+      <h1
+        style={{
+          display: "block",
+          margin: "20px",
+        }}
+      >
+        All Students
+      </h1>
       {props.allStudents.map((student) => (
-        <div key={student.id}>
+        <div
+          style={{
+            margin: "20px",
+            border: "3px solid #2d5f5d",
+            borderRadius: "10px",
+            backgroundColor: "#022140",
+            padding: "50px",
+          }}
+          key={student.id}
+        >
           <Link to={`/student/${student.id}`}>
             <h4>
               {student.firstname} {student.lastname}

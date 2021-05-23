@@ -34,15 +34,36 @@ class AddCampusView extends Component {
 
   render() {
     return (
-      <div>
+      <div
+        style={{
+          backgroundColor: "#265077",
+          height: "100vh",
+        }}
+      >
         <Navbar />
 
         <form onSubmit={this.formSubmit}>
-          <label>
-            Campus Name*
-            <input type="text" name="campusname" />
+          <label
+            style={{
+              display: "block",
+              margin: "20px",
+            }}
+          >
+            Campus Name <input type="text" name="campusname" />
           </label>
-          <button type="submit">Add Campus</button>
+          <button
+            style={{
+              display: "block",
+              margin: "20px",
+              backgroundColor: "#2d5f5d",
+              borderRadius: "5px",
+              border: "0px",
+              padding: "15px",
+            }}
+            type="submit"
+          >
+            Add Campus
+          </button>
         </form>
       </div>
     );

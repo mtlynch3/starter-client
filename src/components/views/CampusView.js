@@ -23,9 +23,23 @@ const CampusView = (props) => {
 
   if (!campus.students.length) {
     return (
-      <div>
+      <div
+        style={{
+          backgroundColor: "#265077",
+          height: "100%",
+        }}
+      >
         <Navbar />
-        <button>
+        <button
+          style={{
+            display: "block",
+            margin: "20px",
+            backgroundColor: "#2d5f5d",
+            borderRadius: "5px",
+            border: "0px",
+            padding: "15px",
+          }}
+        >
           <Link
             to={{
               pathname: `/editcampus`,
@@ -41,16 +55,59 @@ const CampusView = (props) => {
             Edit Campus
           </Link>
         </button>
-        <h1>{campus.name}</h1>
-        <p>{campus.description}</p>
-        <p>Address: {campus.address}</p>
-        <img src={campus.imageURL} alt="campus"></img>
-        <button>
+        <h1
+          style={{
+            margin: "20px",
+          }}
+        >
+          {campus.name}
+        </h1>
+        <p
+          style={{
+            margin: "20px",
+          }}
+        >
+          {campus.description}
+        </p>
+        <p
+          style={{
+            margin: "20px",
+          }}
+        >
+          Address: {campus.address}
+        </p>
+        <img
+          style={{
+            display: "block",
+            margin: "20px",
+            height: "500px",
+            width: "500px",
+            border: "2px solid #2d5f5d",
+          }}
+          src={campus.imageURL}
+          alt="campus"
+        ></img>
+        <button
+          style={{
+            display: "block",
+            margin: "20px",
+            backgroundColor: "#2d5f5d",
+            borderRadius: "5px",
+            border: "0px",
+            padding: "15px",
+          }}
+        >
           <Link to={{ pathname: `/campus/${campus.id}/addstudent` }}>
             Add Student
           </Link>
         </button>
-        <h3>{campus.name} has no students</h3>
+        <h3
+          style={{
+            margin: "20px",
+          }}
+        >
+          {campus.name} has no students
+        </h3>
       </div>
     );
   }

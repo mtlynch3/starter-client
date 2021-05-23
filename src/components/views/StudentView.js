@@ -17,9 +17,23 @@ const handleDelete = async (id) => {
 const StudentView = (props) => {
   const { student } = props;
   return (
-    <div>
+    <div
+      style={{
+        backgroundColor: "#265077",
+        height: "100%",
+      }}
+    >
       <Navbar />
-      <button>
+      <button
+        style={{
+          display: "block",
+          margin: "20px",
+          backgroundColor: "#2d5f5d",
+          borderRadius: "5px",
+          border: "0px",
+          padding: "15px",
+        }}
+      >
         <Link
           to={{
             pathname: `/editstudent`,
@@ -50,11 +64,32 @@ const StudentView = (props) => {
         </li>
         <li>Email: {student.email}</li>
         <li>GPA: {student.gpa}</li>
-        <li>
-          <img src={`${student.imageURL}`} alt="student"></img>
-        </li>
+
+        <img
+          style={{
+            display: "block",
+            margin: "20px",
+            height: "500px",
+            width: "500px",
+            border: "2px solid #2d5f5d",
+          }}
+          src={`${student.imageURL}`}
+          alt="student"
+        ></img>
       </ul>
-      <button onClick={() => handleDelete(student.id)}>Delete Student</button>
+      <button
+        style={{
+          display: "block",
+          margin: "20px",
+          backgroundColor: "#2d5f5d",
+          borderRadius: "5px",
+          border: "0px",
+          padding: "15px",
+        }}
+        onClick={() => handleDelete(student.id)}
+      >
+        Delete Student
+      </button>
     </div>
   );
 };
