@@ -2,7 +2,7 @@ import { Component } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { fetchAllStudentsThunk } from "../../store/thunks";
-//import { AllStudentsView } from "../views";
+import { AllStudentsView } from "../views";
 
 
 class AllStudentsContainer extends Component{
@@ -14,7 +14,9 @@ class AllStudentsContainer extends Component{
 
   render() {
     return (
-      <h1>All Students View</h1>
+      <AllStudentsView
+        allStudents={this.props.allStudents}
+      />
     );
   }
 };
