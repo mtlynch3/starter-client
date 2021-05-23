@@ -9,7 +9,6 @@ const AllStudentsView = (props) => {
       <div>
         <h1>All Campus View</h1>
         <Empty type = 'Students' buttonLabel = 'Add Student' link = '/add-student'/>
-        <div>There are no students.</div>
       </div>
     );
   }

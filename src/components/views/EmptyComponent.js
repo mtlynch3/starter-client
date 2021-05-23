@@ -20,8 +20,8 @@ const Empty = (props) => {
 }
 
 Empty.defaultProps = {
-  type: "Default",
-  buttonLabel: "Default Button",
+  type: 'Default',
+  buttonLabel: 'Default Button',
   link: './add-campus',
 }
 
