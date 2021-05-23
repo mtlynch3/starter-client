@@ -9,7 +9,7 @@ const AllStudentsView = (props) => {
     return (
       <div>
         <Header heading ='All Students' buttonLabel ='Add Student'/>
-        <div>There are no students.</div>
+        <div>There are no students registered in the database. </div>
       </div>
     );
   }

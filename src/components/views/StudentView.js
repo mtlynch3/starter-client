@@ -1,9 +1,19 @@
 import Button from '@material-ui/core/Button';
 import { Link } from 'react-router-dom';
 import './style/Student.css'
+import Header from "./Header.js"
 
 const StudentView = (props) => {
   const {student} = props;
+
+  if(!student){
+    return(
+      <div>
+        <Header heading ='All Students' buttonLabel ='Add Student'/>
+        <p> There are no students registered in the database. </p>
+      </div>
+    )
+  }
 
   //student with no campus
   if(!student.campus){
@@ -21,7 +31,7 @@ const StudentView = (props) => {
             </Button>
 
             <Link to={'/students'} >
-              <Button variant="contained" color="primary">
+              <Button variant="contained" color="primary" onclick={props.deleteStudent(student.id)}>
                   Delete
               </Button>
             </Link>
@@ -52,7 +62,7 @@ const StudentView = (props) => {
               Edit
             </Button>
             <Link to={'/students'} >
-              <Button variant="contained" color="primary">
+              <Button variant="contained" color="primary" onclick={props.deleteStudent(student.id)}>
                 Delete
               </Button>
             </Link>

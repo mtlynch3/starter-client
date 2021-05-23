@@ -34,18 +34,29 @@ const useStyles = makeStyles(theme => ({
 
 }));
 
-const HomePageView = () => {
+const NavBar = () => {
   const classes = useStyles();
   return (
-    <div className={classes.root}>
+    <AppBar position="static" elevation={0} className={classes.appBar}>
+      <Toolbar>
+        <Typography variant="h6" className={classes.title} color="inherit" >
+          CRUD App
+        </Typography>
 
+        <Link className={classes.links} to={'/campuses'} >
+          <Button variant="contained" color="primary" style={{marginRight: '10px'}}>
+            All Campuses
+          </Button>
+        </Link>
 
-      <div className={classes.greeting}><h1>Home Page</h1></div>
-    </div>
+        <Link className={classes.links} to={'/students'} >
+          <Button variant="contained" color="primary">
+            All Students
+          </Button>
+        </Link>
+      </Toolbar>
+    </AppBar>
   );
 }
 
-
-
-
-export default HomePageView;
+export default NavBar
