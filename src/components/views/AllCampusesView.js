@@ -1,13 +1,21 @@
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
+import Header from "./Header.js"
 
 const AllCampusesView = (props) => {
   if (!props.allCampuses.length) {
-    return <div>There are no campuses.</div>;
+    return (
+      <div>
+        <h1>All Campus View</h1>
+        <Header heading ='All Campuses' buttonLabel ='Add Campus'/>
+        <div>There are no campuses.</div>
+      </div>
+    );
   }
 
   return (
     <div>
+      <Header heading ='All Campuses' buttonLabel ='Add Campus'/>
       {props.allCampuses.map((campus) => (
         <div key={campus.id}>
           <Link to={`/campus/${campus.id}`}>
