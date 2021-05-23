@@ -2,13 +2,14 @@ import { Component } from 'react';
 import { FormGroup, TextField, Container, Button } from '@material-ui/core';
 import validator from 'validator';
 
-class AddCampusView extends Component {
+class AddStudentView extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      name: '',
-      address: '',
-      description: '',
+      firstname: '',
+      lastname: '',
+      email: '',
+      gpa: '',
       imgURL: '',
       errors: {}
     };
@@ -27,11 +28,14 @@ class AddCampusView extends Component {
       return false;
     }
 
-    if (field === 'name' && !validator.isAlpha(this.state[field], 'en-US', { ignore: " -." })) {
+    if (field.includes('name') && !validator.isAlpha(this.state[field], 'en-US', { ignore: " -." })) {
       if (update) this.setState({ errors: { ...this.state.errors, [field]: "Name must only contain letters." } });
       return false;
-    } else if (field === 'address' && !validator.isAlphanumeric(this.state[field], 'en-US', { ignore: " -." })) {
-      if (update) this.setState({ errors: { ...this.state.errors, [field]: "Address can only contain numbers or letters." } });
+    } else if (field === 'email' && !validator.isEmail(this.state[field])) {
+      if (update) this.setState({ errors: { ...this.state.errors, [field]: "Invalid email." } });
+      return false;
+    } else if (field === 'gpa' && !validator.isFloat(this.state[field], { min: 0.0, max: 4.0 })) {
+      if (update) this.setState({ errors: { ...this.state.errors, [field]: "GPA must between 0.0 and 4.0." } });
       return false;
     } else if (field === 'imgURL' && this.state[field] !== '' && !validator.isURL(this.state[field])) {
       if (update) this.setState({ errors: { ...this.state.errors, [field]: "Invalid image URL." } });
@@ -43,27 +47,29 @@ class AddCampusView extends Component {
   }
 
   validInput = () => {
-    // Assume the list is valid
+    // Assume the input is valid
     let valid = true;
     // Check against every field
-    valid &= this.verifyInput({ target: { id: 'name' } }, false);
-    valid &= this.verifyInput({ target: { id: 'address' } }, false);
-    valid &= this.verifyInput({ target: { id: 'description' } }, false);
+    valid &= this.verifyInput({ target: { id: 'firstname' } }, false);
+    valid &= this.verifyInput({ target: { id: 'lastname' } }, false);
+    valid &= this.verifyInput({ target: { id: 'email' } }, false);
+    valid &= this.verifyInput({ target: { id: 'gpa' } }, false);
     valid &= this.verifyInput({ target: { id: 'imgURL' } }, false);
 
+    // return the status
     return valid;
   }
 
   submit = () => {
-    let campus = {
-      name: this.state.name,
-      address: this.state.address,
-      description: this.state.description,
+    let student = {
+      firstname: this.state.firstname,
+      lastname: this.state.lastname,
+      email: this.state.email,
+      gpa: Number(this.state.gpa),
       imageUrl: this.state.imgURL ? this.state.imgURL : undefined
     };
-
     // submit
-    this.props.addCampus(campus);
+    this.props.addStudent(student);
   }
 
   render() {
@@ -71,32 +77,41 @@ class AddCampusView extends Component {
       <Container>
         <FormGroup onSubmit={this.submit}>
           <TextField
-            id="name"
-            label="Name"
+            id="firstname"
+            label="First name"
             onChange={this.handleInputChange}
             onBlur={this.verifyInput}
-            value={this.state.name}
+            value={this.state.firstname}
             required={true}
-            error={Boolean(this.state.errors.name)}
-            helperText={this.state.errors.name}/>
+            error={Boolean(this.state.errors.firstname)}
+            helperText={this.state.errors.firstname}/>
           <TextField
-            id="address"
-            label="Address"
+            id="lastname"
+            label="Last name"
             onChange={this.handleInputChange}
             onBlur={this.verifyInput}
-            value={this.state.address}
+            value={this.state.lastname}
             required={true}
-            error={Boolean(this.state.errors.address)}
-            helperText={this.state.errors.address}/>
+            error={Boolean(this.state.errors.lastname)}
+            helperText={this.state.errors.lastname}/>
           <TextField
-            id="description"
-            label="Description"
+            id="email"
+            label="Email"
             onChange={this.handleInputChange}
             onBlur={this.verifyInput}
-            value={this.state.description}
+            value={this.state.email}
             required={true}
-            error={Boolean(this.state.errors.description)}
-            helperText={this.state.errors.description}/>
+            error={Boolean(this.state.errors.email)}
+            helperText={this.state.errors.email}/>
+          <TextField
+            id="gpa"
+            label="GPA"
+            onChange={this.handleInputChange}
+            onBlur={this.verifyInput}
+            value={this.state.gpa}
+            required={true}
+            error={Boolean(this.state.errors.gpa)}
+            helperText={this.state.errors.gpa}/>
           <TextField
             id="imgURL"
             label="Image URL"
@@ -112,4 +127,4 @@ class AddCampusView extends Component {
   }
 }
 
-export default AddCampusView;
+export default AddStudentView;
