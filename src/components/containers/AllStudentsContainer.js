@@ -1,7 +1,7 @@
 import { Component } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
-import { fetchAllStudentsThunk } from "../../store/thunks";
+import { deleteStudentThunk, fetchAllStudentsThunk } from "../../store/thunks";
 import { addStudentThunk } from "../../store/thunks";
 import { AllStudentsView } from "../views";
 import HomePageView from '../views/HomePageView';
@@ -27,17 +27,17 @@ class AllStudentsContainer extends Component {
     this.setState({ [e.target.id]: e.target.value });
   };
 
-  onSubmit = e => {
+  onSubmit = async (e) => {
     e.preventDefault();
 
     const newStudent = {
-        fname: this.state.fname,
-        lname: this.state.lname,
+        firstname: this.state.fname,
+        lastname: this.state.lname,
         email: this.state.email
     };
 
     console.log(newStudent);
-    this.props.addStudent(newStudent);
+    await this.props.addStudent(newStudent);
   };
 
   render() {
@@ -87,7 +87,8 @@ const mapState = (state) => {
 const mapDispatch = (dispatch) => {
   return {
     fetchAllStudents: () => dispatch(fetchAllStudentsThunk()),
-    addStudent: () => dispatch(addStudentThunk()),
+    addStudent: (student) => dispatch(addStudentThunk(student)),
+    deleteStudent: (student) => dispatch(deleteStudentThunk(student)),
   };
 };
 
