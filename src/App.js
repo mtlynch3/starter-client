@@ -11,14 +11,16 @@ import {
   AllStudentsContainer,
   AddCampusContainer
 } from './components/containers';
+import NavBar from "./components/views/NavBar.js"
 
-// if you create separate components for adding/editing 
+// if you create separate components for adding/editing
 // a student or campus, make sure you add routes to those
 // components here
 
 const App = () => {
   return (
     <div className="App">
+      <NavBar />
       <Switch>
         <Route exact path="/" component={HomePageContainer} />
         <Route exact path="/campuses" component={AllCampusesContainer} />
@@ -26,7 +28,7 @@ const App = () => {
         <Route exact path="/add-campus" component={AddCampusContainer} />
         <Route exact path="/students" component={AllStudentsContainer} />
         <Route exact path="/student/:id" component={StudentContainer} />
-      </Switch>        
+      </Switch>
     </div>
   );
 }
