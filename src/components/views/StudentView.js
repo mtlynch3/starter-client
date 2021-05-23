@@ -32,7 +32,7 @@ const StudentView = (props) => {
             </Button>
 
             <Link to={'/students'} >
-              <Button variant="contained" color="primary" onclick={() => props.deleteStudent(student.id)}>
+              <Button variant="contained" color="primary" onClick={() => props.deleteStudent(student.id)}>
                   Delete
               </Button>
             </Link>
@@ -61,7 +61,7 @@ const StudentView = (props) => {
               Edit
             </Button>
             <Link to={'/students'} >
-              <Button variant="contained" color="primary" onclick={() => props.deleteStudent(student.id)}>
+              <Button variant="contained" color="primary" onClick={() => props.deleteStudent(student.id)}>
                 Delete
               </Button>
             </Link>
