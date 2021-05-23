@@ -13,7 +13,7 @@ const StudentView = (props) => {
         <img className = "student" src={student.imageUrl} alt="student-pic"/>
           <div id = "text">
             <h1>{student.firstname + " " + student.lastname}</h1>
-            <p> {student.email}</p>
+            <p>{student.email}</p>
             <p>{student.gpa}</p>
 
             <Button variant="contained" color="primary">
