@@ -71,11 +71,11 @@ class AllStudentsContainer extends Component {
           </div> 
           <button type="submit" class="addBtn">Add Student</button>
         </form>
-        {this.state.invalidEmail ?  <div> Please enter a valid email. </div> : ""}
+        {this.state.invalidEmail && !this.state.email.length ?  <div> Please enter a valid email. </div> : ""}
         {!this.state.fname.length ? <div> Please enter a first name. </div> : ""}
         {!this.state.lname.length ? <div> Please enter a last name. </div> : ""}
         <AllStudentsView
-          allStudents={this.props.allStudents}
+          allStudents={this.props.allStudents} deleteStudent = {this.props.deleteStudent}
         />
       </div>
     );
