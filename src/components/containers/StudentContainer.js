@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { fetchStudentThunk } from "../../store/thunks";
 
-//import { StudentView } from "../views";
+import { StudentView } from "../views";
 
 
 class StudentContainer extends Component {
@@ -14,7 +14,9 @@ class StudentContainer extends Component {
 
   render(){
     return (
-      <h1>Single Student View</h1>
+      <StudentView
+        student={this.props.student}
+      />
     );
   }
 };
