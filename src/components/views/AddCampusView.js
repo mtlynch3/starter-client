@@ -58,25 +58,25 @@ class AddCampusView extends Component {
 
     // name errors
     if (this.state.name === '')
-      errors.name = "Name can't be empty.";
+      newErrors.name = "Name can't be empty.";
     if (!validator.isAlpha(this.state.name, 'en-US', { ignore: " -" }))
-      errors.name = "Name must only contain letters.";
+      newErrors.name = "Name must only contain letters.";
 
     // address
     if (this.state.address === '')
-      errors.address = "Address can't be empty.";
+      newErrors.address = "Address can't be empty.";
     if (!validator.isAlphanumeric(this.state.address, 'en-US', { ignore: " -" }))
-      error.address = "Address can only contain numbers or letters.";
+      newError.address = "Address can only contain numbers or letters.";
 
     // description
     if (this.state.description === '')
-      errors.description = "Description can't be empty.";
+      newErrors.description = "Description can't be empty.";
     if (!validator.isAlpha(this.state.description, 'en-US', { ignore: " -" }))
-      errors.description = "Description must only contain letters.";
+      newErrors.description = "Description must only contain letters.";
 
     // url
     if (this.state.imgURL !== '' && !validator.isURL(this.state.imgURL))
-      errors.imgURL = "Invalid image URL.";
+      newErrors.imgURL = "Invalid image URL.";
 
     // if theres no errors, submit
     if (newErrors === {}) {
