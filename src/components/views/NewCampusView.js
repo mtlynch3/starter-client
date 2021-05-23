@@ -1,5 +1,6 @@
 import { Component } from 'react';
 import { FormGroup, TextField, Container } from '@material-ui/core';
+import validator from 'validator';
 
 class NewCampusView extends Component {
   constructor(props) {
@@ -20,16 +21,26 @@ class NewCampusView extends Component {
   verifyInput = (event) => {
     switch (event.target.id) {
       case 'name':
-        console.log('verified name');
+        if (!validator.isAlpha(this.state.name))
+          this.setState({ [errors.name]: "Name must only contain letters." })
+        else if (this.state.name === '')
+          this.setState({ [errors.name]: "Name can't be empty." })
         return;
       case 'address':
-        console.log('address');
+        if (!validator.isAlphanumeric(this.state.address))
+          this.setState({ [errors.address]: "Address can only contain numbers or letters." })
+        else if (this.state.address === '')
+          this.setState({ [errors.address]: "Address can't be empty." })
         return;
       case 'description':
-        console.log('description');
+        if (!validator.isAlpha(this.state.description))
+          this.setState({ [errors.description]: "Description must only contain letters." })
+        else if (this.state.name === '')
+          this.setState({ [errors.description]: "Description can't be empty." })
         return;
       case 'imgURL':
-        console.log('img URL');
+        if (!validator.isURL(this.state.imgURL))
+          this.setState({ [errors.imgURL]: "Invalid image URL." })
         return;
       default:
         return;
