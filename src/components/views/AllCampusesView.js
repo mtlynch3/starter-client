@@ -1,14 +1,13 @@
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 import Header from "./Header.js"
+import Empty from "./EmptyComponent.js"
 
 const AllCampusesView = (props) => {
   if (!props.allCampuses.length) {
     return (
       <div>
-        <h1>All Campus View</h1>
-        <Header heading ='All Campuses' buttonLabel ='Add Campus'/>
-        <div>There are no campuses.</div>
+        <Empty type = 'Campuses' buttonLabel = 'Add Campus'/>
       </div>
     );
   }
