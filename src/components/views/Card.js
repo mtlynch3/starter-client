@@ -22,6 +22,34 @@ const useStyles = makeStyles(theme => ({
 
 
 const CardView = (props) => {
+
+  //student with no campus
+  if(!props.student.campus){
+    return (
+      <div className='student-card'>
+      <Box m={2} boxShadow={3}>
+          <Card className='card'>
+            <CardMedia
+                className='card-class'
+                image={props.student.imageUrl}
+                title='student-image'
+            />
+            <CardContent>
+                <Link to={`/student/${props.student.id}`}>
+                  <h3> {props.student.firstname + " " + props.student.lastname} </h3>
+                </Link>
+
+                <h3> No campus found </h3>
+
+            </CardContent>
+          </Card>
+        </Box>
+      </div>
+    );
+
+  }
+
+  //student with campus
   return (
     <div className='student-card'>
     <Box m={2} boxShadow={3}>
@@ -44,14 +72,6 @@ const CardView = (props) => {
       </Box>
     </div>
   );
-}
-
-Card.defaultProps = {
-  heading: "Default Heading",
-}
-
-Card.propTypes = {
-  heading: PropTypes.string,
 }
 
 

@@ -8,7 +8,6 @@ const AllStudentsView = (props) => {
   if (!props.allStudents.length) {
     return (
       <div>
-        <h1>All Campus View</h1>
         <Header heading ='All Students' buttonLabel ='Add Student'/>
         <div>There are no students.</div>
       </div>
