@@ -46,13 +46,6 @@ const useStyles = makeStyles({
 
 const HomePageView = (props) => {
   const classes = useStyles();
-  // const [recentStudents, setRecentStudents] = useState([]);
-  // const [recentCampuses, setRecentCampuses] = useState([]);
-
-  // useEffect(() => {
-  //   console.log(this);
-  //   // this.props.fetchRecentStudents();
-  // }, []);
 
   const { recentStudents, recentCampuses } = props;
 
@@ -123,26 +116,4 @@ const HomePageView = (props) => {
   );
 };
 
-// const mapState = (state) => {
-//   return {
-//     recentStudents: state.recentStudents,
-//   };
-// };
-
-// const mapDispatch = (dispatch) => {
-//   return {
-//     fetchRecentStudents: () => dispatch(fetchRecentStudentsThunk()),
-//   };
-// };
-
-// export default connect(mapState, mapDispatch)(HomePageView);
-
 export default HomePageView;
-
-// const mapStateToProps = (state) => {
-//   const { allStudents, AllCampuses } = state;
-//   console.log(allStudents, allCampuses);
-//   return { recentStudents: allStudents, recentCampuses: AllCampuses };
-// };
-
-// export default connect(mapStateToProps)(HomePageView);
