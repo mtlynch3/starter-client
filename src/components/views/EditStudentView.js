@@ -89,7 +89,8 @@ class EditStudentView extends Component {
       email: this.state.email,
       gpa: Number(this.state.gpa),
       campusId: this.state.campusId ? this.state.campusId : undefined,
-      imageUrl: this.state.imgURL ? this.state.imgURL : undefined
+      imageUrl: this.state.imgURL ? this.state.imgURL : undefined,
+      id: this.props.student.id
     };
     // submit
     this.props.editStudent(student);

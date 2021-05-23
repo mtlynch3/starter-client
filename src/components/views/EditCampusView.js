@@ -70,7 +70,8 @@ class EditCampusView extends Component {
       name: this.state.name,
       address: this.state.address,
       description: this.state.description,
-      imageUrl: this.state.imgURL ? this.state.imgURL : undefined
+      imageUrl: this.state.imgURL ? this.state.imgURL : undefined,
+      id: this.props.campus.id
     };
 
     // submit
