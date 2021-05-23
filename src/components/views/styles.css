@@ -1,0 +1,8 @@
+label, input {
+  display: table-cell;
+  margin-bottom: 10px;
+}
+button {
+  height : 20px;
+  width : 100px;
+}
