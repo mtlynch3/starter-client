@@ -9,12 +9,18 @@ const CardView = (props) => {
   return (
     <Card className='card'>
       <CardMedia
-        className='card-class'
-        image={props.student.imageUrl}
-        title="image"
+          className='card-class'
+          image={props.student.imageUrl}
+          title='image'
       />
       <CardContent>
-        <h1> Harry Styles </h1>
+          <Link to={`/student/${props.id}`}>
+            <h3> {props.student.firstname + " " + props.student.lastname} </h3>
+          </Link>
+
+          <Link to={`/campus/${props.student.campus.id}`}>
+            <h3> {props.student.campus.name} </h3>
+          </Link>
       </CardContent>
     </Card>
   );
@@ -22,13 +28,11 @@ const CardView = (props) => {
 
 Card.defaultProps = {
   heading: "Default Heading",
-  buttonLabel: "Default Button",
 }
 
 Card.propTypes = {
   heading: PropTypes.string,
-  buttonLabel: PropTypes.string,
 }
 
 
-export default Card
+export default CardView
