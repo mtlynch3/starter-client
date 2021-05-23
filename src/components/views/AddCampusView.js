@@ -1,5 +1,5 @@
 import { Component } from 'react';
-import { FormGroup, TextField, Container } from '@material-ui/core';
+import { FormGroup, TextField, Container, Button } from '@material-ui/core';
 import validator from 'validator';
 
 class AddCampusView extends Component {
@@ -18,28 +18,34 @@ class AddCampusView extends Component {
     this.setState({ [event.target.id]: event.target.value });
   }
 
-  verifyInput = (event) => {
+  verifyInputChange = (event) => {
     switch (event.target.id) {
       case 'name':
         if (this.state.name === '')
-          this.setState({ errors: { ...this.state.errors, name: "Name can't be empty." } })
-        else if (!validator.isAlpha(this.state.name))
-          this.setState({ errors: { ...this.state.errors, name: "Name must only contain letters." } })
+          this.setState({ errors: { ...this.state.errors, name: "Name can't be empty." } });
+        else if (!validator.isAlpha(this.state.name, 'en-US', { ignore: " -" }))
+          this.setState({ errors: { ...this.state.errors, name: "Name must only contain letters." } });
+        else
+          this.setState({ errors: { ...this.state.errors, name: "" } });
         return;
       case 'address':
         if (this.state.address === '')
           this.setState({ errors: { ...this.state.errors, address: "Address can't be empty." } })
-        else if (!validator.isAlphanumeric(this.state.address))
+        else if (!validator.isAlphanumeric(this.state.address, 'en-US', { ignore: " -" }))
           this.setState({ errors: { ...this.state.errors, address: "Address can only contain numbers or letters." } })
+        else
+          this.setState({ errors: { ...this.state.errors, address: "" } });
         return;
       case 'description':
-        if (this.state.name === '')
+        if (this.state.description === '')
           this.setState({ errors: { ...this.state.errors, description: "Description can't be empty." } })
-        else if (!validator.isAlpha(this.state.description))
+        else if (!validator.isAlpha(this.state.description, 'en-US', { ignore: " -" }))
           this.setState({ errors: { ...this.state.errors, description: "Description must only contain letters." } })
+        else
+          this.setState({ errors: { ...this.state.errors, description: "" } });
         return;
       case 'imgURL':
-        if (!validator.isURL(this.state.imgURL))
+        if (this.state.imgURL !== '' && !validator.isURL(this.state.imgURL))
           this.setState({ errors: { ...this.state.errors, imgURL: "Invalid image URL." } })
         return;
       default:
@@ -47,15 +53,56 @@ class AddCampusView extends Component {
     }
   }
 
+  submit = () => {
+    let newErrors = {};
+
+    // name errors
+    if (this.state.name === '')
+      errors.name = "Name can't be empty.";
+    if (!validator.isAlpha(this.state.name, 'en-US', { ignore: " -" }))
+      errors.name = "Name must only contain letters.";
+
+    // address
+    if (this.state.address === '')
+      errors.address = "Address can't be empty.";
+    if (!validator.isAlphanumeric(this.state.address, 'en-US', { ignore: " -" }))
+      error.address = "Address can only contain numbers or letters.";
+
+    // description
+    if (this.state.description === '')
+      errors.description = "Description can't be empty.";
+    if (!validator.isAlpha(this.state.description, 'en-US', { ignore: " -" }))
+      errors.description = "Description must only contain letters.";
+
+    // url
+    if (this.state.imgURL !== '' && !validator.isURL(this.state.imgURL))
+      errors.imgURL = "Invalid image URL.";
+
+    // if theres no errors, submit
+    if (newErrors === {}) {
+      let campus = {
+        name: this.state.name,
+        address: this.state.address,
+        description: this.state.description,
+        imageUrl: this.state.imgURL ? this.state.imgURL : undefined
+      };
+      // submit
+      this.props.addCampus(campus);
+    } else {
+      // if there are errors update state
+      this.setState({ errors: newErrors });
+    }
+  }
+
   render() {
     return (
       <Container>
-        <FormGroup onSubmit={this.props.addCampus}>
+        <FormGroup onSubmit={this.submit}>
           <TextField
             id="name"
             label="Name"
             onChange={this.handleInputChange}
-            onBlur={this.verifyInput}
+            onBlur={this.verifyInputChange}
             value={this.state.name}
             required={true}
             error={this.state.errors.name}
@@ -64,7 +111,7 @@ class AddCampusView extends Component {
             id="address"
             label="Address"
             onChange={this.handleInputChange}
-            onBlur={this.verifyInput}
+            onBlur={this.verifyInputChange}
             value={this.state.address}
             required={true}
             error={this.state.errors.address}
@@ -73,7 +120,7 @@ class AddCampusView extends Component {
             id="description"
             label="Description"
             onChange={this.handleInputChange}
-            onBlur={this.verifyInput}
+            onBlur={this.verifyInputChange}
             value={this.state.description}
             required={true}
             error={this.state.errors.description}
@@ -82,9 +129,11 @@ class AddCampusView extends Component {
             id="imgURL"
             label="Image URL"
             onChange={this.handleInputChange}
+            onBlur={this.verifyInputChange}
             value={this.state.imgURL}
             error={this.state.errors.imgURL}
             helperText={this.state.errors.imgURL}/>
+          <Button variant="contained" disabled={this.state.errors}>Submit</Button>
         </FormGroup>
       </Container>
     );
