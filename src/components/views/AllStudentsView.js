@@ -1,6 +1,7 @@
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 import Header from "./Header.js"
+import Card from "./Card.js";
 
 const AllStudentsView = (props) => {
   if (!props.allStudents.length) {
@@ -18,12 +19,7 @@ const AllStudentsView = (props) => {
       <Header heading ='All Students' buttonLabel ='Add Student'/>
       {props.allStudents.map((student) => (
         <div key={student.id}>
-          <Link to={`/student/${student.id}`}>
-            <h1>{student.firstname + " "+ student.lastname}</h1>
-          </Link>
-          <p>{student.gpa}</p>
-          <p>{student.campus.name}</p>
-          <p>{student.campus.address}</p>
+          <Card student={student}/>
         </div>
       ))}
     </div>
