@@ -1,11 +1,11 @@
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { addCampusThunk } from '../../store/thunks';
-import { NewCampusView } from '../views';
+import { AddCampusView } from '../views';
 
-const NewCampusContainer = (props) => {
+const AddCampusContainer = (props) => {
   return (
-    <NewCampusView allCampus={props.allCampus}/>
+    <AddCampusView allCampus={props.allCampus}/>
   );
 }
 
@@ -15,8 +15,8 @@ const mapDispatchToProps = (dispatch) => ({
 });
 
 // Make sure we get the addCampus func through props
-NewCampusContainer.propTypes = {
+AddCampusContainer.propTypes = {
   addCampus: PropTypes.func.isRequired
 };
 
-export default connect(null, mapDispatchToProps)(NewCampusContainer);
+export default connect(null, mapDispatchToProps)(AddCampusContainer);

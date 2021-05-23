@@ -2,7 +2,7 @@ import { Component } from 'react';
 import { FormGroup, TextField, Container } from '@material-ui/core';
 import validator from 'validator';
 
-class NewCampusView extends Component {
+class AddCampusView extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -91,4 +91,4 @@ class NewCampusView extends Component {
   }
 }
 
-export default NewCampusView;
+export default AddCampusView;
