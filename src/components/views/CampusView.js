@@ -16,6 +16,7 @@ const CampusView = (props) => {
           <h1>{campus.name}</h1>
           <p>{campus.address}</p>
           <p>{campus.description}</p>
+          <div id = "buttons">
             <Button variant="contained" color="primary">
               Edit
             </Button>
@@ -24,6 +25,7 @@ const CampusView = (props) => {
                 Delete
               </Button>
             </Link>
+          </div>
         </div>
       </div>
       <div id = "student">
