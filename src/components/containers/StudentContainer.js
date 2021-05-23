@@ -1,15 +1,36 @@
 import { Component } from "react";
-import { addStudentThunk, fetchAllStudentsThunk } from "../../store/thunks";
+import { fetchStudentThunk, fetchCampusThunk} from "../../store/thunks";
 import { connect } from "react-redux";
-import AllStudentsView from "../views/AllStudentsView"
+import StudentView from "../views/StudentView"
 
 class StudentContainer extends Component {
 
+  componentDidMount() {
+    this.props.fetchStudent(this.props.match.params.id);
+    // this.props.fetchCampus(this.props.match.params.student.campusId);
+  }
+
   render () {
     return (
-      <h1>Single Student View</h1>
+      <StudentView student = {this.props.student} campus = {this.props.campus}></StudentView>
     );
   }
 };
 
-export default StudentContainer;
+// Map state to props;
+const mapState = (state) => {
+  return {
+    student: state.student
+  };
+};
+
+// Map dispatch to props;
+const mapDispatch = (dispatch) => {
+  return {
+    fetchStudent: (id) => dispatch(fetchStudentThunk(id)),
+    fetchCampus: (id) => dispatch(fetchCampusThunk(id))
+  };
+};
+
+// Export our store-connected container by default;
+export default connect(mapState, mapDispatch)(StudentContainer);

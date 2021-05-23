@@ -23,7 +23,10 @@ const AllStudentsView = (props) => {
             <div> {student.firstname} </div>
             <div> {student.lastname}  </div>
             <div> GPA: {student.gpa} </div>
-            <img src = {student.imageUrl} alt = "Image of Student" width = "150" height = "150" />
+            <img src = {student.imageUrl} alt="Student Portrait" width = "150" height = "150" />
+            <Link to={`/student/${student.id}`} >
+              <button type="button"> Show More Details</button>
+            </Link>
             <br></br>
           </div>
         ))}
