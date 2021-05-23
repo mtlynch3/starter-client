@@ -1,5 +1,5 @@
 import { Component } from 'react';
-import { FormGroup, TextField, Container, Button } from '@material-ui/core';
+import { FormGroup, TextField, Container, Button, MenuItem } from '@material-ui/core';
 import validator from 'validator';
 
 class AddStudentView extends Component {
@@ -11,12 +11,18 @@ class AddStudentView extends Component {
       email: '',
       gpa: '',
       imgURL: '',
+      campus: 'None',
+      campusId: 0,
       errors: {}
     };
   }
 
   handleInputChange = (event) => {
     this.setState({ [event.target.id]: event.target.value });
+  }
+
+  selectCampus = (event) => {
+    this.setState({ campus: event.target.value, campusId: event.target.id });
   }
 
   verifyInput = (event, update = true) => {
@@ -66,6 +72,7 @@ class AddStudentView extends Component {
       lastname: this.state.lastname,
       email: this.state.email,
       gpa: Number(this.state.gpa),
+      campusId: this.state.campusId ? this.state.campusId : undefined,
       imageUrl: this.state.imgURL ? this.state.imgURL : undefined
     };
     // submit
@@ -120,6 +127,22 @@ class AddStudentView extends Component {
             value={this.state.imgURL}
             error={Boolean(this.state.errors.imgURL)}
             helperText={this.state.errors.imgURL}/>
+          <TextField id="campus" label="Campus" value={this.state.campus} select>
+            <MenuItem value="None">None</MenuItem>
+            {
+              this.props.allCampuses.map((campus) => {
+                return (
+                  <MenuItem
+                    key={campus.id}
+                    value={campus.name}
+                    id={campus.id}
+                    onClick={() => this.setState({ campus: campus.name, campusId: campus.id })}>
+                    {campus.name}
+                  </MenuItem>
+                );
+              })
+            }
+          </TextField>
           <Button variant="contained" disabled={!this.validInput()} onClick={this.submit}>Submit</Button>
         </FormGroup>
       </Container>
