@@ -11,10 +11,10 @@ const AddStudentContainer = (props) => {
 
 // Map dispatch to props
 const mapDispatchToProps = (dispatch) => ({
-  addStudent: (campus) => dispatch(addStudentThunk(campus))
+  addStudent: (student) => dispatch(addStudentThunk(student))
 });
 
-// Make sure we get the addCampus func through props
+// Make sure we get the addStudent func through props
 AddStudentContainer.propTypes = {
   addStudent: PropTypes.func.isRequired
 };
