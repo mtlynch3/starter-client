@@ -21,26 +21,26 @@ class NewCampusView extends Component {
   verifyInput = (event) => {
     switch (event.target.id) {
       case 'name':
-        if (!validator.isAlpha(this.state.name))
-          this.setState({ [errors.name]: "Name must only contain letters." })
-        else if (this.state.name === '')
-          this.setState({ [errors.name]: "Name can't be empty." })
+        if (this.state.name === '')
+          this.setState({ errors: { ...this.state.errors, name: "Name can't be empty." } })
+        else if (!validator.isAlpha(this.state.name))
+          this.setState({ errors: { ...this.state.errors, name: "Name must only contain letters." } })
         return;
       case 'address':
-        if (!validator.isAlphanumeric(this.state.address))
-          this.setState({ [errors.address]: "Address can only contain numbers or letters." })
-        else if (this.state.address === '')
-          this.setState({ [errors.address]: "Address can't be empty." })
+        if (this.state.address === '')
+          this.setState({ errors: { ...this.state.errors, address: "Address can't be empty." } })
+        else if (!validator.isAlphanumeric(this.state.address))
+          this.setState({ errors: { ...this.state.errors, address: "Address can only contain numbers or letters." } })
         return;
       case 'description':
-        if (!validator.isAlpha(this.state.description))
-          this.setState({ [errors.description]: "Description must only contain letters." })
-        else if (this.state.name === '')
-          this.setState({ [errors.description]: "Description can't be empty." })
+        if (this.state.name === '')
+          this.setState({ errors: { ...this.state.errors, description: "Description can't be empty." } })
+        else if (!validator.isAlpha(this.state.description))
+          this.setState({ errors: { ...this.state.errors, description: "Description must only contain letters." } })
         return;
       case 'imgURL':
         if (!validator.isURL(this.state.imgURL))
-          this.setState({ [errors.imgURL]: "Invalid image URL." })
+          this.setState({ errors: { ...this.state.errors, imgURL: "Invalid image URL." } })
         return;
       default:
         return;
