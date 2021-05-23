@@ -14,13 +14,14 @@ class AllStudentsContainer extends Component {
         fname: "",
         lname: "",
         email: "",
-        errors: ""
+        errors: "",
+        invalidEmail: false
     };
 }
 
-  componentDidMount() {
+  async componentDidMount() {
     console.log(this.props);
-    this.props.fetchAllStudents();
+    await this.props.fetchAllStudents();
   }
 
   onChange = e => {
@@ -29,13 +30,16 @@ class AllStudentsContainer extends Component {
 
   onSubmit = async (e) => {
     e.preventDefault();
-
+    this.setState( {invalidEmail : false });
+    if (!this.state.email.match(/^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/) && this.state.email.length) {
+      this.setState({ invalidEmail : true });
+      return;
+    } 
     const newStudent = {
-        firstname: this.state.fname,
-        lastname: this.state.lname,
-        email: this.state.email
+      firstname: this.state.fname,
+      lastname: this.state.lname,
+      email: this.state.email
     };
-
     console.log(newStudent);
     await this.props.addStudent(newStudent);
   };
@@ -67,7 +71,9 @@ class AllStudentsContainer extends Component {
           </div> 
           <button type="submit" class="addBtn">Add Student</button>
         </form>
-
+        {this.state.invalidEmail ?  <div> Please enter a valid email. </div> : ""}
+        {!this.state.fname.length ? <div> Please enter a first name. </div> : ""}
+        {!this.state.lname.length ? <div> Please enter a last name. </div> : ""}
         <AllStudentsView
           allStudents={this.props.allStudents}
         />

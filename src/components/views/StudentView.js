@@ -1,8 +1,9 @@
 import { Link } from "react-router-dom";
-
+import HomePageView from "./HomePageView";
 const StudentView = (props) => {
   return (
     <div>
+    <HomePageView/>
       <Link to={'/students'}> 
         <button type="button"> Back </button>
       </Link>
