@@ -1,11 +1,17 @@
-import { makeStyles } from "@material-ui/core";
+import { makeStyles, Button } from "@material-ui/core";
 import React, { useMemo } from "react";
 import { StudentModel } from "../../api/student";
 import { Link } from "react-router-dom";
 import PictureCard from "../picture_card";
 
+export type ActionItem = {
+  name: string,
+  onClick: (props?: any) => Promise<void>,
+}
+
 export interface StudentItemProps extends StudentModel {
   showDetailOnClick?: boolean;
+  actions?: Array<ActionItem>;
 }
 
 const useStyles = makeStyles({
@@ -25,6 +31,9 @@ const useStyles = makeStyles({
     fontSize: "18px",
     fontWeight: 300,
   },
+  actionButton: {
+    marginRight: "12px"
+  }
 });
 
 const StudentItem: React.FC<StudentItemProps> = ({
@@ -35,8 +44,10 @@ const StudentItem: React.FC<StudentItemProps> = ({
   email,
   imageUrl,
   showDetailOnClick = true,
+  actions = [],
 }) => {
   const classes = useStyles();
+
 
   const detailView = useMemo(() => {
     return (
@@ -46,6 +57,8 @@ const StudentItem: React.FC<StudentItemProps> = ({
         </h2>
         <h5 className={classes.detail}>{email}</h5>
         <h5 className={classes.detail}>GPA: {gpa}</h5>
+
+        {actions.map((action, key) => <Button key={key} className={classes.actionButton} variant="contained" color="primary"> {action.name} </Button>)}
       </PictureCard>
     );
   }, [firstName, lastName, email, gpa, classes.detail, classes.name, imageUrl]);
