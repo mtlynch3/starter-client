@@ -1,7 +1,7 @@
 import { makeStyles } from "@material-ui/core";
 import React from "react";
 import NavbarLayout from "../../components/layout/navbar_layout";
-import StudentDetailForm, { StudentDetailFormProps, StudentDetailFormSubmitOnClickProps } from "../../components/student_detail_form";
+import StudentDetailForm, { StudentDetailFormSubmitOnClickProps } from "../../components/student_detail_form";
 
 const useStyles = makeStyles({
   header: {
@@ -20,7 +20,7 @@ const CreateStudentPage: React.FC = () => {
   const handleCreateStudent = async (data: StudentDetailFormSubmitOnClickProps) => {
     // TODO: Make API call to create student
   };
-  
+
   return (
     <NavbarLayout>
       <div className={classes.content}>

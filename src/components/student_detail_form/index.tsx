@@ -66,6 +66,7 @@ const StudentDetailForm: React.FC<StudentDetailFormProps> = ({
     <div>
       <h4>Preview</h4>
       <StudentItem
+        showDetailOnClick={false}
         id={-1}
         firstName={firstName}
         lastName={lastName}

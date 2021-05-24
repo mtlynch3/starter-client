@@ -4,7 +4,7 @@ import Typography from "@material-ui/core/Typography";
 import Button from "@material-ui/core/Button";
 import { makeStyles } from "@material-ui/core/styles";
 
-import { Link, NavLink } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -12,18 +12,20 @@ const useStyles = makeStyles((theme) => ({
   },
   title: {
     flexGrow: 1,
-    textAlign: "left",
-    fontType: "bold",
-    fontFamily: "Courier, sans-serif",
-    fontSize: "35px",
-    color: "#CDDC39",
+    fontWeight: "600",
+    fontSize: "28px",
+    color: theme.palette.secondary.main,
   },
   appBar: {
-    backgroundColor: "#11153e",
-    shadows: ["none"],
+    backgroundColor: theme.palette.primary.dark,
+    // shadows: ["none"],
   },
   links: {
     textDecoration: "none",
+    color: "inherit",
+    "&:hover": {
+      color: "inherit"
+    }
   },
   actionButton: {
     marginRight: "12px",
@@ -56,11 +58,10 @@ const Navbar = (props) => {
     <div>
       <AppBar position="static" elevation={0} className={classes.appBar}>
         <Toolbar>
-          <Link to="/"></Link>
-          <Typography variant="h6" className={classes.title} color="inherit">
-            <Link to="/" className={classes.links}>
+          <Typography className={classes.title} color="inherit">
+            <NavLink to="/" className={classes.links}>
               Campus Solution
-            </Link>
+            </NavLink>
           </Typography>
           {action && (
             <Button variant={"contained"} className={classes.actionButton} color="secondary" onClick={action.onClick}>
