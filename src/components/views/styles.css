@@ -1,8 +1,14 @@
 label, input {
   display: table-cell;
-  margin-bottom: 10px;
+  margin-bottom: 5px;
 }
 button {
   height : 20px;
   width : 100px;
+}
+
+.links{
+  font-size: 25px;
+  margin-right: 10em;
+  text-decoration: none;
 }

@@ -12,9 +12,11 @@ class AllCampusesContainer extends Component {
 
   render() {
     return (
+     <div>
       <AllCampusesView
         allCampuses={this.props.allCampuses}
       />
+      </div>
     );
   }
 }
