@@ -1,11 +1,13 @@
-import { makeStyles } from '@material-ui/core';
-import React from 'react'
-import { useDispatch } from 'react-redux';
-import { useHistory } from 'react-router-dom';
-import CampusService from '../../api/campus';
-import CampusDetailForm, { CampusDetailFormSubmitOnClickProps } from '../../components/campus_detail_form';
-import NavbarLayout from '../../components/layout/navbar_layout';
-import { addCampus } from '../../store/actions/actionCreators';
+import { makeStyles } from "@material-ui/core";
+import React from "react";
+import { useDispatch } from "react-redux";
+import { useHistory } from "react-router-dom";
+import CampusService, { UpdatableCampusProps } from "../../api/campus";
+import CampusDetailForm, {
+  CampusDetailFormSubmitOnClickProps,
+} from "../../components/campus_detail_form";
+import NavbarLayout from "../../components/layout/navbar_layout";
+import { addCampus } from "../../store/actions/actionCreators";
 
 const useStyles = makeStyles({
   header: {
@@ -18,16 +20,17 @@ const useStyles = makeStyles({
   },
 });
 
-const CreateCampusPage : React.FC = () => {
+const CreateCampusPage: React.FC = () => {
   const classes = useStyles();
-  const history = useHistory()
-  const dispatch = useDispatch()
+  const history = useHistory();
+  const dispatch = useDispatch();
 
-  const handleCreatecampus = async (data: CampusDetailFormSubmitOnClickProps) => {
-    console.log(data)
-    const campus = await CampusService.Create(data)
-    dispatch(addCampus(campus))
-    history.push('/campuses')
+  const handleCreatecampus = async (
+    data: CampusDetailFormSubmitOnClickProps
+  ) => {
+    const campus = await CampusService.Create(data);
+    dispatch(addCampus(campus));
+    history.push("/campus/" + campus.id);
   };
 
   return (
@@ -43,6 +46,6 @@ const CreateCampusPage : React.FC = () => {
       </div>
     </NavbarLayout>
   );
-}
+};
 
-export default CreateCampusPage
+export default CreateCampusPage;
