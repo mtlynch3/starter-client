@@ -42,7 +42,7 @@ const LinkButton = ({ to, label }) => {
   );
 };
 
-const NavBarContainer = () => {
+const Navbar = () => {
   const classes = useStyles();
   return (
     <div>
@@ -63,4 +63,4 @@ const NavBarContainer = () => {
   );
 };
 
-export default NavBarContainer;
+export default Navbar;

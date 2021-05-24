@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 import { fetchAllCampusesThunk } from "../../store/thunks";
 import AllCampusesView from "./AllCampusesView";
 import CampusActionsController from "../../components/campus_action_controller";
-import NavBarContainer from "../../components/navbar";
+import Navbar from "../../components/navbar";
 
 class AllCampusesContainer extends Component {
   componentDidMount() {
@@ -14,7 +14,7 @@ class AllCampusesContainer extends Component {
   render() {
     return (
       <div>
-        <NavBarContainer />
+        <Navbar />
         <AllCampusesView allCampuses={this.props.allCampuses} />;
         <CampusActionsController create={false} />
       </div>

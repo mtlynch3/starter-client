@@ -1,6 +1,7 @@
-import * as ac from './actions/actionCreators';
-const axios = require('axios');
-const BACKEND_URL = 'https://r1chy5zeeh.execute-api.us-east-1.amazonaws.com';
+import api from "../config/api";
+import * as ac from "./actions/actionCreators";
+const axios = require("axios");
+const BACKEND_URL = api.URL;
 
 // THUNKS
 
@@ -58,7 +59,7 @@ export const fetchCampusThunk = (id) => async (dispatch) => {
 export const fetchAllStudentsThunk = () => async (dispatch) => {
   try {
     let res = await axios.get(`${BACKEND_URL}/prod/student`);
-    dispatch(ac.fetchAllStudents(res.data.result));
+    dispatch(ac.fetchAllStudentsAction(res.data.result));
   } catch (err) {
     console.error(err);
   }

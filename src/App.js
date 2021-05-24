@@ -4,7 +4,7 @@ import { Switch, Route, Redirect } from "react-router-dom";
 import HomePage from './pages/home'
 import CampusesPage from './pages/campuses'
 import CampusDetailPage from './pages/campus_detail'
-import StudentsPage from './pages/students'
+import StudentsPage from './pages/students/index'
 import StudentDetailPage from './pages/student_detail'
 
 const App = () => {

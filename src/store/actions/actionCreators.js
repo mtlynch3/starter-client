@@ -43,7 +43,7 @@ export const fetchCampus = (campus) => {
 };
 
 //All students
-export const fetchAllStudents = (students) => {
+export const fetchAllStudentsAction = (students) => {
   return {
     type: at.FETCH_ALL_STUDENTS,
     payload: students,

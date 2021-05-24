@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { fetchStudentThunk } from "../../store/thunks";
-import NavBarContainer from "../../components/navbar";
+import Navbar from "../../components/navbar";
 
 import StudentActionsController from "../../components/student_action_controller/index.js";
 import StudentItem from "../../components/student_item";
@@ -15,7 +15,7 @@ class StudentContainer extends Component {
   render() {
     return (
       <div>
-        <NavBarContainer />
+        <Navbar />
         <StudentItem student={this.props.student} />
         <StudentActionsController create={false} student={this.props.student} />
       </div>

@@ -1,6 +1,6 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import NavBarContainer from '../../components/navbar';
+import Navbar from '../../components/navbar';
 import campus_image from '../../assets/image/campus.jpg';
 import { Container, Grid, Typography } from '@material-ui/core';
 
@@ -55,7 +55,7 @@ const HomePageView = (props) => {
         'recentCampus',
         recentCampuses
       )} */}
-      <NavBarContainer />
+      <Navbar />
 
       <div className={classes.pageContainer}>
         {/* Content Container for margins*/}
