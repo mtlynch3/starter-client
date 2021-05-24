@@ -55,4 +55,9 @@ export default class APIRequest {
       throw error;
     }
   }
+
+  static async Delete(route: string) : Promise<void>{
+    // TODO: Implement
+    return
+  }
 }
