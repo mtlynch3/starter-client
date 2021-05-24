@@ -18,13 +18,6 @@ export type UpdatableStudentProps = {
 };
 
 export default class StudentService {
-  static async RetrieveAllStudents(): Promise<StudentModel[]> {
-    let response = await APIRequest.Get<{
-      result: StudentModel[];
-    }>(`student`);
-    return response.result;
-  }
-
   static async Create(data: UpdatableStudentProps): Promise<StudentModel> {
     let res = await APIRequest.Post<StudentModel>(`student`, data);
     return res;
