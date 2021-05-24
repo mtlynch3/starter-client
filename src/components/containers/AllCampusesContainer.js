@@ -4,10 +4,8 @@ import { connect } from "react-redux";
 import { fetchAllCampusesThunk, deleteCampusThunk, addCampusThunk } from "../../store/thunks";
 import { AllCampusesView } from "../views";
 import HomePageView from "../views/HomePageView";
-import { addCampus } from "../../store/actions/actionCreators";
 
 class AllCampusesContainer extends Component {
-
   constructor() {
     super();
     this.state = {
