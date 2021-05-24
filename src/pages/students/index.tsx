@@ -45,7 +45,7 @@ const StudentsPage: React.FC = () => {
     >
       {loading && <LinearProgress />}
       {!loading && studentList.length === 0 && <h3>No students</h3>}
-      <StudentList students={studentList ? studentList : []} />
+      <StudentList filterable students={studentList ? studentList : []} />
     </NavbarLayout>
   );
 };
