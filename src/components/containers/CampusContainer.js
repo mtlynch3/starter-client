@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { fetchCampusThunk } from "../../store/thunks";
-import HomePageView from '../views/HomePageView';
 import { CampusView } from "../views";
 
 class CampusContainer extends Component {
