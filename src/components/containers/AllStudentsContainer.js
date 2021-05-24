@@ -15,7 +15,9 @@ class AllStudentsContainer extends Component {
         lname: "",
         email: "",
         errors: "",
-        invalidEmail: false
+        gpa : "",
+        invalidEmail: false,
+        invalidGpa : false
     };
 }
 
@@ -31,14 +33,20 @@ class AllStudentsContainer extends Component {
   onSubmit = async (e) => {
     e.preventDefault();
     this.setState( {invalidEmail : false });
+    this.setState({ invalidGpa : false });
     if (!this.state.email.match(/^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/) && this.state.email.length) {
       this.setState({ invalidEmail : true });
       return;
-    } 
+    }
+    if ( parseFloat(this.state.gpa) < 0 || parseFloat(this.state.gpa) > 4 || isNaN(parseFloat(this.state.gpa)) ) {
+      this.setState({ invalidGpa : true });
+      return;
+    }
     const newStudent = {
       firstname: this.state.fname,
       lastname: this.state.lname,
-      email: this.state.email
+      email: this.state.email,
+      gpa : this.state.gpa
     };
     console.log(newStudent);
     await this.props.addStudent(newStudent);
@@ -69,11 +77,18 @@ class AllStudentsContainer extends Component {
                   <input id ="email" type="text" value={this.state.email} onChange={this.onChange} required />
             </label>
           </div> 
+          <div class = "input-field">   
+            <label>
+                  GPA:
+                  <input id ="gpa" type="text" value={this.state.gpa} onChange={this.onChange} required />
+            </label>
+          </div> 
           <button type="submit" class="addBtn">Add Student</button>
         </form>
         {this.state.invalidEmail || !this.state.email.length ?  <div> Please enter a valid email. </div> : ""}
         {!this.state.fname.length ? <div> Please enter a first name. </div> : ""}
         {!this.state.lname.length ? <div> Please enter a last name. </div> : ""}
+        {this.state.invalidGpa || !this.state.gpa.length ? <div> Please enter a valid GPA between 0 and 4. </div> : ""}
         <AllStudentsView
           allStudents={this.props.allStudents} deleteStudent = {this.props.deleteStudent}
         />

@@ -77,3 +77,34 @@ export const fetchStudentThunk = id => async dispatch => {
     console.error(err);
   }
 };
+
+// Delete campus
+export const deleteCampusThunk = campusId => async dispatch => {
+  try {
+    await axios.delete(`/api/campuses/${campusId}`);
+    //delete succesful so change state with dispatch
+    dispatch(ac.deleteCampus(campusId));
+  } catch(err) {
+    console.error(err);
+  }
+};
+
+//Add campus
+export const addCampusThunk = campus => async dispatch => {
+  try {
+    let addedCampus = await axios.post('/api/campuses/', campus);
+    dispatch(ac.addCampus(addedCampus.data));
+  } catch(err) {
+    console.error(err);
+  }
+};
+
+
+// export const addStudentThunk = (student) => async (dispatch) => {
+//   try {
+//     let res = await axios.post(`/api/students`, student);
+//     dispatch(ac.addStudent(res.data));
+//   } catch(err) {
+//     console.error(err);
+//   }
+// };
