@@ -5,6 +5,7 @@ import { useHistory } from "react-router";
 import StudentService, { StudentModel } from "../../api/student";
 import NavbarLayout from "../../components/layout/navbar_layout";
 import StudentList from "../../components/student_list";
+import { useErrorAlert } from "../../hooks/useErrorAlert";
 import { fetchAllStudentsAction } from "../../store/actions/actionCreators";
 
 const StudentsPage: React.FC = () => {
@@ -14,6 +15,7 @@ const StudentsPage: React.FC = () => {
   ) as StudentModel[];
   const dispatch = useDispatch();
   const history = useHistory()
+  const showError = useErrorAlert()
 
   useEffect(() => {
     const retreiveStudents = async () => {
@@ -25,8 +27,7 @@ const StudentsPage: React.FC = () => {
         const result = await StudentService.RetrieveAllStudents();
         dispatch(fetchAllStudentsAction(result));
       } catch (error) {
-        // TODO: Show Error Message to user
-        console.log(error);
+        showError(error.message)
       } finally {
         setLoading(false);
       }
