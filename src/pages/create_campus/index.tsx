@@ -2,7 +2,7 @@ import { makeStyles } from "@material-ui/core";
 import React from "react";
 import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
-import CampusService, { UpdatableCampusProps } from "../../api/campus";
+import CampusService from "../../api/campus";
 import CampusDetailForm, {
   CampusDetailFormSubmitOnClickProps,
 } from "../../components/campus_detail_form";
