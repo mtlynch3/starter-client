@@ -9,7 +9,7 @@ const allStudents = (state = defaultState, action) => {
     case at.FETCH_ALL_STUDENTS:
       return { ...state, all: [...action.payload] };
     case at.ADD_STUDENT:
-      return { ...state, all: [...state.all, action.payload] };
+      return { ...state, all: [action.payload, ...state.all] };
     case at.DELETE_STUDENT:
       return {
         ...state,

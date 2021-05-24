@@ -17,8 +17,7 @@ const useStyles = makeStyles((theme) => ({
     borderColor: theme.palette.primary.main,
   },
   image: {
-    width: "100%",
-    maxHeight: "120px",
+    width: "75%",
     border: "1px sopid " + theme.palette.primary.main,
     borderRadius: "12px",
   },
@@ -28,7 +27,7 @@ const PictureCard: React.FC<PictureCardProps> = ({ imageUrl, children }) => {
   const classes = useStyles();
   return (
     <div className={classes.root}>
-      <Grid container spacing={4}>
+      <Grid container spacing={0}>
         <Grid item xs={2}>
           <img className={classes.image} src={imageUrl} />
         </Grid>

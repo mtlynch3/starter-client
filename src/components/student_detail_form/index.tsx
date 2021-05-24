@@ -1,16 +1,11 @@
 import { Button, makeStyles, TextField } from "@material-ui/core";
-import React, { useMemo } from "react";
-import { StudentModel } from "../../api/student";
+import React, { useMemo, useState } from "react";
+import { CreateStudentProps, StudentModel } from "../../api/student";
+import { useErrorAlert } from "../../hooks/useErrorAlert";
 import useFormInput from "../../hooks/useFormInput";
 import StudentItem from "../student_item";
 
-export type StudentDetailFormSubmitOnClickProps = {
-  firstName: string;
-  lastName: string;
-  gpa: number;
-  email: string;
-  imageUrl: string;
-};
+export type StudentDetailFormSubmitOnClickProps = CreateStudentProps;
 
 export type StudentDetailFormProps = {
   initialData?: StudentModel;
@@ -45,21 +40,28 @@ const StudentDetailForm: React.FC<StudentDetailFormProps> = ({
   );
   const [gpa, handleChangeGpa] = useFormInput(String(initialData?.gpa || ""));
   const [email, handleChangeEmail] = useFormInput("");
+  const [loading, setLoading] = useState(false);
+  const showError = useErrorAlert();
   const classes = useStyles();
 
-  const gpaFloat = useMemo(
-    () => parseFloat(gpa),
-    [gpa]
-  );
+  const gpaFloat = useMemo(() => parseFloat(gpa), [gpa]);
 
   const handleOnClickSubmit = async () => {
-    onClickSubmit({
-      firstName,
-      lastName,
-      email,
-      imageUrl,
-      gpa: gpaFloat,
-    });
+    try {
+      setLoading(true);
+      await onClickSubmit({
+        firstName,
+        lastName,
+        email,
+        imageUrl: imageUrl.length ? imageUrl : undefined,
+        gpa: gpaFloat,
+      });
+    } catch (error) {
+      showError(error.message || "Something went wrong");
+      console.log(Object.keys(error));
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -121,6 +123,7 @@ const StudentDetailForm: React.FC<StudentDetailFormProps> = ({
         onChange={handleChangeImageUrl}
       />
       <Button
+        disabled={loading}
         color="primary"
         className={classes.submitButton}
         variant="contained"
