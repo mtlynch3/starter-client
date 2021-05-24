@@ -19,6 +19,9 @@ const CampusesPage: React.FC = () => {
 
   useEffect(() => {
     const fetchCampuses = async () => {
+      if(campuses.length !== 0) {
+        return
+      }
       try {
         setLoading(true);
         const result = await CampusService.RetrieveAllCampuses();
