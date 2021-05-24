@@ -1,11 +1,11 @@
 import { Button, makeStyles, TextField } from "@material-ui/core";
 import React, { useMemo, useState } from "react";
-import { CreateStudentProps, StudentModel } from "../../api/student";
+import { UpdatableStudentProps, StudentModel } from "../../api/student";
 import { useErrorAlert } from "../../hooks/useErrorAlert";
 import useFormInput from "../../hooks/useFormInput";
 import StudentItem from "../student_item";
 
-export type StudentDetailFormSubmitOnClickProps = CreateStudentProps;
+export type StudentDetailFormSubmitOnClickProps = UpdatableStudentProps;
 
 export type StudentDetailFormProps = {
   initialData?: StudentModel;
@@ -39,7 +39,7 @@ const StudentDetailForm: React.FC<StudentDetailFormProps> = ({
     initialData?.imageUrl || ""
   );
   const [gpa, handleChangeGpa] = useFormInput(String(initialData?.gpa || ""));
-  const [email, handleChangeEmail] = useFormInput("");
+  const [email, handleChangeEmail] = useFormInput(initialData?.email || "");
   const [loading, setLoading] = useState(false);
   const showError = useErrorAlert();
   const classes = useStyles();

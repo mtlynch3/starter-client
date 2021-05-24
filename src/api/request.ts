@@ -38,4 +38,21 @@ export default class APIRequest {
       throw error;
     }
   }
+
+  static async Patch<T>(route: string, data: Record<string, unknown>) : Promise<T> {
+    try {
+      const path = `${api.URL}/${route}`;
+      const result = await axios.patch(path, data);
+      return result.data as T;
+    } catch (error) {
+      console.log(error);
+      if (axios.isAxiosError(error)) {
+        throw new Error(
+          error.response?.data?.error?.message ||
+            "Something went wrong patching to the server"
+        );
+      }
+      throw error;
+    }
+  }
 }
