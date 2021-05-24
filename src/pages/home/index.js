@@ -5,7 +5,6 @@ import {
   fetchRecentStudentsThunk,
   fetchRecentCampusesThunk,
 } from '../../store/thunks';
-// import StudentView from '../views/StudentView';
 import HomePageView from './HomePageView';
 
 // const HomePageContainer = () => {
@@ -17,7 +16,6 @@ class HomePage extends React.Component {
 
   render() {
     const { recentStudents, recentCampuses } = this.props;
-    // console.log(1, this);
     return (
       <HomePageView
         recentStudents={recentStudents}

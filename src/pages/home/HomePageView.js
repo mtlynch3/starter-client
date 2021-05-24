@@ -6,7 +6,7 @@ import { Container, Grid, Typography } from '@material-ui/core';
 
 // import studentItem from '../student_item';
 // import { fetchRecentStudentsThunk } from '../../store/thunks';
-import StudentView from '../../components/student_item';
+import StudentItem from '../../components/student_item';
 import CampusItem from '../../components/campus_item';
 
 const useStyles = makeStyles({
@@ -100,7 +100,7 @@ const HomePageView = (props) => {
                 recentStudents.data &&
                 recentStudents.data.results ? (
                   recentStudents.data.results.map((student) => {
-                    return <StudentView student={student} />;
+                    return <StudentItem student={student} />;
                   })
                 ) : (
                   <>No Results</>
