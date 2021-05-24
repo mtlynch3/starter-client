@@ -1,20 +1,27 @@
-import * as at from '../actions/actionTypes';
+import * as at from "../actions/actionTypes";
 
-// REDUCER;
-const allStudents = (state = [], action) => {
+const defaultState = {
+  all: [],
+};
+
+const allStudents = (state = defaultState, action) => {
   switch (action.type) {
     case at.FETCH_ALL_STUDENTS:
-      return action.payload;
-    case at.FETCH_RECENT_STUDENTS:
-      return action.payload;
+      return { ...state, all: [...action.payload] };
     case at.ADD_STUDENT:
-      return [...state, action.payload];
+      return { ...state, all: [action.payload, ...state.all] };
     case at.DELETE_STUDENT:
-      return state.filter((student) => student.id !== action.payload);
+      return {
+        ...state,
+        all: state.all.filter((student) => student.id !== action.payload),
+      };
     case at.EDIT_STUDENT:
-      return state.map((student) => {
-        return student.id === action.payload.id ? action.payload : student;
-      });
+      return {
+        ...state,
+        all: state.all.map((student) =>
+          student.id === action.payload.id ? action.payload : student
+        ),
+      };
     default:
       return state;
   }
