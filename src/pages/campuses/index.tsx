@@ -52,7 +52,7 @@ const CampusesPage: React.FC = () => {
       <div>
       {loading && <LinearProgress />}
       {!loading && campuses.length === 0 && <h3>No Campuses</h3>}
-      <CampusList campuses={campuses} />
+      <CampusList filterable campuses={campuses} />
       </div>
     </NavbarLayout>
   );

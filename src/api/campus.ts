@@ -8,7 +8,7 @@ export type CampusModel = {
   imageUrl: string;
 };
 
-export type UpdatableCampusProps = Omit<CampusModel, "id">
+export type UpdatableCampusProps = Omit<CampusModel, "id">;
 export default class CampusService {
   static async RetrieveAllCampuses(): Promise<CampusModel[]> {
     const res = await APIRequest.Get<{
@@ -17,8 +17,11 @@ export default class CampusService {
     return res.results;
   }
 
-  static async Create(data: UpdatableCampusProps) : Promise<CampusModel> {
-    const res = await APIRequest.Post<CampusModel>("campus", data)
-    return res
+  static async Create(data: UpdatableCampusProps): Promise<CampusModel> {
+    const res = await APIRequest.Post<CampusModel>("campus", {
+      ...data,
+      imageUrl: data.imageUrl.length ? data.imageUrl : undefined,
+    });
+    return res;
   }
 }
