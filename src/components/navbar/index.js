@@ -1,10 +1,10 @@
-import AppBar from '@material-ui/core/AppBar';
-import Toolbar from '@material-ui/core/Toolbar';
-import Typography from '@material-ui/core/Typography';
-import Button from '@material-ui/core/Button';
-import { makeStyles } from '@material-ui/core/styles';
+import AppBar from "@material-ui/core/AppBar";
+import Toolbar from "@material-ui/core/Toolbar";
+import Typography from "@material-ui/core/Typography";
+import Button from "@material-ui/core/Button";
+import { makeStyles } from "@material-ui/core/styles";
 
-import { Link } from 'react-router-dom';
+import { Link, NavLink } from "react-router-dom";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -12,37 +12,45 @@ const useStyles = makeStyles((theme) => ({
   },
   title: {
     flexGrow: 1,
-    textAlign: 'left',
-    fontType: 'bold',
-    fontFamily: 'Courier, sans-serif',
-    fontSize: '35px',
-    color: '#CDDC39',
+    textAlign: "left",
+    fontType: "bold",
+    fontFamily: "Courier, sans-serif",
+    fontSize: "35px",
+    color: "#CDDC39",
   },
   appBar: {
-    backgroundColor: '#11153e',
-    shadows: ['none'],
+    backgroundColor: "#11153e",
+    shadows: ["none"],
   },
   links: {
-    textDecoration: 'none',
+    textDecoration: "none",
   },
+  actionButton: {
+    marginRight: "12px",
+    fontWeight: 700
+  },
+  activeLink: {
+    opacity: 0.70,
+  }
 }));
 
 const LinkButton = ({ to, label }) => {
   const classes = useStyles();
   return (
-    <Link className={classes.links} to={to}>
+    <NavLink className={classes.links} exact activeClassName={classes.activeLink} to={to}>
       <Button
         variant="contained"
         color="primary"
-        style={{ marginRight: '10px' }}
+        style={{ marginRight: "10px" }}
       >
         {label}
       </Button>
-    </Link>
+    </NavLink>
   );
 };
 
-const Navbar = () => {
+const Navbar = (props) => {
+  const { action } = props; //{name: string, onClick: () => void}
   const classes = useStyles();
   return (
     <div>
@@ -54,8 +62,13 @@ const Navbar = () => {
               Campus Solution
             </Link>
           </Typography>
-          <LinkButton to={'/campuses'} label={'Campuses'} />
-          <LinkButton to={'/students'} label={'Students'} />
+          {action && (
+            <Button variant={"contained"} className={classes.actionButton} color="secondary" onClick={action.onClick}>
+              {action.name}
+            </Button>
+          )}
+          <LinkButton to={"/campuses"} label={"Campuses"} />
+          <LinkButton to={"/students"} label={"Students"} />
           {/* <LinkButton to={'/home_page'} label={'Home Page'} /> */}
         </Toolbar>
       </AppBar>

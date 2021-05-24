@@ -6,6 +6,7 @@ import CampusesPage from './pages/campuses'
 import CampusDetailPage from './pages/campus_detail'
 import StudentsPage from './pages/students/index'
 import StudentDetailPage from './pages/student_detail'
+import CreateStudentPage from "./pages/create_student";
 
 const App = () => {
   return (
@@ -15,6 +16,7 @@ const App = () => {
         <Route exact path="/campuses" component={CampusesPage} />
         <Route exact path="/campus/:id" component={CampusDetailPage} />
         <Route exact path="/students" component={StudentsPage} />
+        <Route exact path="/students/create" component={CreateStudentPage} />
         <Route exact path="/student/:id" component={StudentDetailPage} />
         <Route exact path="/error/404" component={Error404Page} />
         <Redirect to="/error/404" />

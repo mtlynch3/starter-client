@@ -10,16 +10,17 @@ const useStyles = makeStyles({
 
 export type NavbarLayoutProps = {
   container?: boolean;
+  actionButton?: {
+    name: string;
+    onClick: () => void;
+  };
 };
 
-const NavbarLayout: React.FC<NavbarLayoutProps> = ({
-  children,
-  container,
-}) => {
+const NavbarLayout: React.FC<NavbarLayoutProps> = ({ children, container, actionButton }) => {
   const classes = useStyles();
   return (
     <div>
-      <Navbar />
+      <Navbar action={actionButton} />
       <div className={container ? classes.container : ""}>{children}</div>
     </div>
   );

@@ -1,6 +1,7 @@
 import { LinearProgress } from "@material-ui/core";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { useHistory } from "react-router";
 import StudentService, { StudentModel } from "../../api/student";
 import NavbarLayout from "../../components/layout/navbar_layout";
 import StudentList from "../../components/student_list";
@@ -12,6 +13,7 @@ const StudentsPage: React.FC = () => {
     (state) => state.students.all || []
   ) as StudentModel[];
   const dispatch = useDispatch();
+  const history = useHistory()
 
   useEffect(() => {
     const retreiveStudents = async () => {
@@ -33,8 +35,15 @@ const StudentsPage: React.FC = () => {
     retreiveStudents();
   }, [dispatch]); //eslint-disable-line react-hooks/exhaustive-deps
 
+  const handleClickCreate = () => {
+    history.push("/students/create")
+  }
+
   return (
-    <NavbarLayout container>
+    <NavbarLayout container actionButton={{
+      name: "Create",
+      onClick: handleClickCreate
+    }}>
       {loading && <LinearProgress />}
       {!loading && studentList.length === 0 && <h3>No students</h3>}
       <StudentList students={studentList ? studentList : []} />
