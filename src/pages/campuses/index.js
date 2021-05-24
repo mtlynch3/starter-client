@@ -2,9 +2,9 @@ import { Component } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { fetchAllCampusesThunk } from "../../store/thunks";
-import { AllCampusesView } from "../views";
-import CampusActionsController from "./CampusActionsController";
-import NavBarContainer from "../containers/NavBarContainer";
+import AllCampusesView from "./AllCampusesView";
+import CampusActionsController from "../../components/campus_action_controller";
+import NavBarContainer from "../../components/navbar";
 
 class AllCampusesContainer extends Component {
   componentDidMount() {

@@ -1,13 +1,13 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import NavBarContainer from '../containers/NavBarContainer';
-import campus_image from './image/campus.jpg';
+import NavBarContainer from '../../components/navbar';
+import campus_image from '../../assets/image/campus.jpg';
 import { Container, Grid, Typography } from '@material-ui/core';
 
 // import studentItem from '../student_item';
 // import { fetchRecentStudentsThunk } from '../../store/thunks';
-import StudentView from '../views/StudentView';
-import CampusView from '../views/CampusView';
+import StudentView from '../../components/student_item';
+import CampusItem from '../../components/campus_item';
 
 const useStyles = makeStyles({
   pageContainer: {
@@ -86,7 +86,7 @@ const HomePageView = (props) => {
                 recentCampuses.data &&
                 recentCampuses.data.results ? (
                   recentCampuses.data.results.map((campus) => (
-                    <CampusView campus={campus} />
+                    <CampusItem campus={campus} />
                   ))
                 ) : (
                   <>No Results</>

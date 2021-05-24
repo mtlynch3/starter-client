@@ -1,6 +1,6 @@
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
-import NavBarContainer from "../containers/NavBarContainer";
+import NavBarContainer from "../../components/navbar";
 import { useStyles } from "../../styles/styles.js";
 
 const AllStudentsView = ({ allStudents }) => {

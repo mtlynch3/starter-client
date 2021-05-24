@@ -1,6 +1,6 @@
 import { useStyles } from "../../styles/styles.js";
 
-const CampusView = ({ campus }) => {
+const CampusItem = ({ campus }) => {
   const classes = useStyles();
   const { id, name, description, ...rest } = campus;
 
@@ -13,4 +13,4 @@ const CampusView = ({ campus }) => {
   );
 };
 
-export default CampusView;
+export default CampusItem;

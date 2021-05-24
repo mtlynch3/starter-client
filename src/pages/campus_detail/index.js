@@ -1,10 +1,10 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { fetchCampusThunk } from "../../store/thunks";
-import NavBarContainer from "../containers/NavBarContainer";
+import NavBarContainer from "../../components/navbar";
 
-import CampusActionController from "../containers/CampusActionsController.js";
-import { CampusView } from "../views";
+import CampusActionController from "../../components/campus_action_controller";
+import CampusView from "../../components/campus_item";
 
 class CampusContainer extends Component {
   async componentDidMount() {

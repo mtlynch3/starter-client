@@ -6,10 +6,10 @@ import {
   fetchRecentCampusesThunk,
 } from '../../store/thunks';
 // import StudentView from '../views/StudentView';
-import HomePageView from '../views/HomePageView';
+import HomePageView from './HomePageView';
 
 // const HomePageContainer = () => {
-class HomePageContainer extends React.Component {
+class HomePage extends React.Component {
   componentDidMount() {
     this.props.fetchRecentStudents();
     this.props.fetchRecentCampuses();
@@ -41,7 +41,7 @@ const mapDispatch = (dispatch) => {
   };
 };
 
-HomePageContainer.propTypes = {
+HomePage.propTypes = {
   allStudents: PropTypes.array.isRequired,
   allCampuses: PropTypes.array.isRequired,
   fetchRecentStudents: PropTypes.func.isRequired,
@@ -50,4 +50,4 @@ HomePageContainer.propTypes = {
 
 // export default HomePageContainer;
 
-export default connect(mapState, mapDispatch)(HomePageContainer);
+export default connect(mapState, mapDispatch)(HomePage);

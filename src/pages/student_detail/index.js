@@ -1,10 +1,10 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { fetchStudentThunk } from "../../store/thunks";
-import NavBarContainer from "../containers/NavBarContainer";
+import NavBarContainer from "../../components/navbar";
 
-import StudentActionsController from "../containers/StudentActionsController.js";
-import { StudentView } from "../views";
+import StudentActionsController from "../../components/student_action_controller/index.js";
+import StudentView from "../../components/student_item";
 
 class StudentContainer extends Component {
   componentDidMount() {

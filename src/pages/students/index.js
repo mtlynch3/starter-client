@@ -2,8 +2,8 @@ import { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { fetchAllStudentsThunk } from '../../store/thunks';
-import { AllStudentsView } from '../views';
-import StudentActionsController from './StudentActionsController';
+import AllStudentsView from './AllStudentsView';
+import StudentActionsController from '../../components/student_action_controller';
 
 const defaultStudent = {
   firstName: 'First Name',

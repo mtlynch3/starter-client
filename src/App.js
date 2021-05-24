@@ -1,30 +1,21 @@
 import "./App.css";
-import Error404Page from "./error_404/error_page";
-//Router
+import Error404Page from "./pages/error_404/error_page";
 import { Switch, Route, Redirect } from "react-router-dom";
-//Components
-import {
-  HomePageContainer,
-  CampusContainer,
-  StudentContainer,
-  AllCampusesContainer,
-  AllStudentsContainer,
-} from './components/containers';
-
-// if you create separate components for adding/editing 
-// a student or campus, make sure you add routes to those
-// components here
+import HomePage from './pages/home'
+import CampusesPage from './pages/campuses'
+import CampusDetailPage from './pages/campus_detail'
+import StudentsPage from './pages/students'
+import StudentDetailPage from './pages/student_detail'
 
 const App = () => {
   return (
     <div className="App">
       <Switch>
-        <Route exact path="/" component={HomePageContainer} />
-        <Route exact path="/home_page" component={HomePageContainer} />
-        <Route exact path="/campuses" component={AllCampusesContainer} />
-        <Route exact path="/campus/:id" component={CampusContainer} />
-        <Route exact path="/students" component={AllStudentsContainer} />
-        <Route exact path="/student/:id" component={StudentContainer} />
+        <Route exact path="/" component={HomePage} />
+        <Route exact path="/campuses" component={CampusesPage} />
+        <Route exact path="/campus/:id" component={CampusDetailPage} />
+        <Route exact path="/students" component={StudentsPage} />
+        <Route exact path="/student/:id" component={StudentDetailPage} />
         <Route exact path="/error/404" component={Error404Page} />
         <Redirect to="/error/404" />
       </Switch>        
