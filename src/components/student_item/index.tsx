@@ -61,7 +61,7 @@ const StudentItem: React.FC<StudentItemProps> = ({
         {actions.map((action, key) => <Button key={key} className={classes.actionButton} variant="contained" color="primary"> {action.name} </Button>)}
       </PictureCard>
     );
-  }, [firstName, lastName, email, gpa, classes.detail, classes.name, imageUrl]);
+  }, [firstName, lastName, email, gpa, classes.detail, classes.name, classes.actionButton, imageUrl, actions]);
 
   return (
     <div>
