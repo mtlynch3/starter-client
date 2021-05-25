@@ -47,19 +47,6 @@ const StudentDetailForm: React.FC<StudentDetailFormProps> = ({
 
   const gpaFloat = useMemo(() => parseFloat(gpa), [gpa]);
 
-  const history = useHistory();
-  // console.log(initialData)
-
-  const deleteAction: ActionItem = {
-    name: "Delete",
-    onClick: async () => {
-      alert(`deleted ${initialData?.id}`)
-      history.goBack();
-    }
-  }
-
-  const actions: Array<ActionItem> = [deleteAction];
-
   const handleOnClickSubmit = async () => {
     try {
       setLoading(true);
@@ -83,7 +70,6 @@ const StudentDetailForm: React.FC<StudentDetailFormProps> = ({
       <h4>Preview</h4>
       <StudentItem
         showDetailOnClick={false}
-        actions={actions}
         id={-1}
         firstName={firstName}
         lastName={lastName}
