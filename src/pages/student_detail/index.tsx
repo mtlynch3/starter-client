@@ -44,18 +44,21 @@ const StudentDetailPage: React.FC = () => {
     fetchStudentDetail();
   }, [studentId, showError, history]);
 
-  const handleCreateStudent = async (
+  const handleUpdateStudent = async (
     data: StudentDetailFormSubmitOnClickProps
   ) => {
-    // TODO: Need better error handling on backend
-    await StudentService.Update(studentId, data); 
-    const student: StudentModel = {
-      id: studentId,
-      imageUrl: data.imageUrl!,
-      ...data
+    try {
+      await StudentService.Update(studentId, data);
+      const student: StudentModel = {
+        id: studentId,
+        imageUrl: data.imageUrl!,
+        ...data,
+      };
+      dispatch(editStudent(student));
+      history.push("/students");
+    } catch (error) {
+      showError(error.message);
     }
-    dispatch(editStudent({student}));
-    history.push("/students");
   };
 
   const handleDeleteStudent = async (studentId: number) => {
@@ -69,15 +72,13 @@ const StudentDetailPage: React.FC = () => {
       onClick: () => handleDeleteStudent(studentId),
     }}>
       <div className={classes.content}>
-        {initialStudent === undefined && (
-          <LinearProgress />
-        )}
+        {initialStudent === undefined && <LinearProgress />}
         {initialStudent && (
           <StudentDetailForm
             initialData={initialStudent}
             submitButton={{
               title: "Save",
-              onClick: handleCreateStudent,
+              onClick: handleUpdateStudent,
             }}
           />
         )}

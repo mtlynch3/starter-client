@@ -9,6 +9,10 @@ export type StudentListProps = {
   filterable?: boolean;
   disableRedirect?: boolean;
   onClick?: (student: StudentModel) => void;
+  actions?: Array<{
+    name: string;
+    onClick: (student: StudentModel) => Promise<void>;
+  }>;
 };
 
 const useStyles = makeStyles({
@@ -16,15 +20,16 @@ const useStyles = makeStyles({
     cursor: "pointer",
   },
   input: {
-    marginTop: "16px"
-  }
+    marginTop: "16px",
+  },
 });
 
 const StudentList: React.FC<StudentListProps> = ({
   students,
   onClick,
+  actions,
   filterable = false,
-  disableRedirect = onClick ? true : false,
+  disableRedirect = onClick || actions ? true : false,
 }) => {
   const [searchFilter, handleChangeSearchFilter] = useFormInput("");
   const classes = useStyles();
@@ -49,10 +54,20 @@ const StudentList: React.FC<StudentListProps> = ({
           if (onClick) onClick(student);
         }}
       >
-        <StudentItem {...student} showDetailOnClick={!disableRedirect} />
+        <StudentItem
+          {...student}
+          showDetailOnClick={!disableRedirect}
+          actions={actions?.map((action) => ({
+            name: action.name,
+            onClick: async () => {
+              console.log("clicked action")
+              await action.onClick(student)
+            }
+          }))}
+        />
       </div>
     ));
-  }, [classes.clickable, disableRedirect, filteredStudents, onClick]);
+  }, [actions, classes.clickable, disableRedirect, filteredStudents, onClick]);
 
   return (
     <div>

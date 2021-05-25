@@ -58,7 +58,7 @@ const StudentItem: React.FC<StudentItemProps> = ({
         <h5 className={classes.detail}>{email}</h5>
         <h5 className={classes.detail}>GPA: {gpa}</h5>
 
-        {actions.map((action, key) => <Button key={key} className={classes.actionButton} variant="contained" color="primary"> {action.name} </Button>)}
+        {actions.map((action, key) => <Button onClick={action.onClick} key={key} className={classes.actionButton} variant="contained" color="primary"> {action.name} </Button>)}
       </PictureCard>
     );
   }, [firstName, lastName, email, gpa, classes.detail, classes.name, classes.actionButton, imageUrl, actions]);
