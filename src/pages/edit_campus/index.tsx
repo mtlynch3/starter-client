@@ -4,6 +4,7 @@ import { useHistory, useParams } from "react-router";
 import { CampusModel, UpdatableCampusProps } from "../../api/campus";
 import CampusDetailForm from "../../components/campus_detail_form";
 import NavbarLayout from "../../components/layout/navbar_layout";
+import useDeleteCampus from "../../hooks/useDeleteCampus";
 import { useErrorAlert } from "../../hooks/useErrorAlert";
 import useGetCampusById from "../../hooks/useGetCampusById";
 import useUpdateCampus from "../../hooks/useUpdateCampus";
@@ -24,6 +25,7 @@ const EditCampusPage: React.FC = () => {
   const [initialCampus, setInitialCampus] = useState<CampusModel>();
   const { findCampus, loading: loadingCampus } = useGetCampusById();
   const { updateCampus, loading: loadingUpdateCampus } = useUpdateCampus();
+  const { deleteCampus, loading: loadingDeleteCampus } = useDeleteCampus();
   const showError = useErrorAlert();
 
   useEffect(() => {
@@ -49,11 +51,22 @@ const EditCampusPage: React.FC = () => {
     }
   };
 
+  const handleDeleteCampus = async () => {
+    await deleteCampus(campusId);
+    history.push("/campuses");
+  };
+
   return (
-    <NavbarLayout>
+    <NavbarLayout
+      actionButton={{
+        name: "Delete",
+        onClick: handleDeleteCampus,
+      }}
+    >
       <div className={classes.content}>
         {(initialCampus === undefined ||
           loadingCampus ||
+          loadingDeleteCampus ||
           loadingUpdateCampus) && <LinearProgress />}
         {initialCampus && (
           <CampusDetailForm
