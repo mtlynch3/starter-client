@@ -9,6 +9,7 @@ import StudentDetailForm, {
 } from "../../components/student_detail_form";
 import { useErrorAlert } from "../../hooks/useErrorAlert";
 import { editStudent } from "../../store/actions/actionCreators";
+import useDeleteStudent from "../../hooks/useDeleteStudent";
 
 const useStyles = makeStyles({
   content: {
@@ -26,6 +27,8 @@ const StudentDetailPage: React.FC = () => {
   const studentId = parseInt(id, 10);
   const [initialStudent, setInitialStudent] = useState<StudentModel>();
   const showError = useErrorAlert();
+
+  const { deleteStudent } = useDeleteStudent();
 
   useEffect(() => {
     const fetchStudentDetail = async () => {
@@ -54,8 +57,16 @@ const StudentDetailPage: React.FC = () => {
     history.push("/students");
   };
 
+  const handleDeleteStudent = async (studentId: number) => {
+    await deleteStudent(studentId);
+    history.goBack();
+  }
+
   return (
-    <NavbarLayout>
+    <NavbarLayout container actionButton={{
+      name: 'Delete',
+      onClick: () => handleDeleteStudent(studentId),
+    }}>
       <div className={classes.content}>
         {initialStudent === undefined && (
           <LinearProgress />
