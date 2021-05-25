@@ -21,8 +21,6 @@ const useDeleteStudent : DeleteStudentHook = () => {
     } finally {
       setLoading(false);
     }
-    // TODO: Implement
-    // TODO: Handle Redux updates
   }
 
   return {
