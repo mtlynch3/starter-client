@@ -3,8 +3,7 @@ import React, { useMemo, useState } from "react";
 import { UpdatableStudentProps, StudentModel } from "../../api/student";
 import { useErrorAlert } from "../../hooks/useErrorAlert";
 import useFormInput from "../../hooks/useFormInput";
-import StudentItem, { ActionItem } from "../student_item";
-import { useHistory } from "react-router";
+import StudentItem from "../student_item";
 
 export type StudentDetailFormSubmitOnClickProps = UpdatableStudentProps;
 

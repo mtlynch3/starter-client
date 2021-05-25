@@ -42,7 +42,7 @@ const StudentDetailPage: React.FC = () => {
     };
 
     fetchStudentDetail();
-  }, [studentId, showError]);
+  }, [studentId, showError, history]);
 
   const handleCreateStudent = async (
     data: StudentDetailFormSubmitOnClickProps
