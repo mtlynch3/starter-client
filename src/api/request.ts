@@ -57,7 +57,18 @@ export default class APIRequest {
   }
 
   static async Delete(route: string) : Promise<void>{
-    // TODO: Implement
-    return
+    try {
+      const path = `${api.URL}/${route}`;
+      await axios.delete(path);
+    } catch (error) {
+      console.log(error);
+      if (axios.isAxiosError(error)) {
+        throw new Error(
+          error.response?.data?.error?.message || 
+            "Somthing went wrong deleting to the server"
+        );
+      }
+      throw error;
+    }
   }
 }
