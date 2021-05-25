@@ -1,11 +1,13 @@
-import { makeStyles } from "@material-ui/core";
+import { Button, makeStyles } from "@material-ui/core";
 import React, { useMemo } from "react";
 import { Link } from "react-router-dom";
 import PictureCard from "../picture_card";
 import { CampusModel } from "../../api/campus";
+import { ActionItem } from "../student_item";
 
 export interface CampusItemProps extends CampusModel {
   showDetailOnClick?: boolean;
+  actions?: ActionItem[];
 }
 
 const useStyles = makeStyles({
@@ -29,6 +31,9 @@ const useStyles = makeStyles({
     fontSize: "18px",
     fontWeight: 400,
   },
+  actionButton: {
+    marginRight: "12px",
+  },
 });
 
 const CampusItem: React.FC<CampusItemProps> = ({
@@ -37,7 +42,8 @@ const CampusItem: React.FC<CampusItemProps> = ({
   address,
   description,
   imageUrl,
-  showDetailOnClick = true,
+  actions,
+  showDetailOnClick = actions ? false : true,
 }) => {
   const classes = useStyles();
 
@@ -47,10 +53,24 @@ const CampusItem: React.FC<CampusItemProps> = ({
         <h2 className={classes.name}>{name}</h2>
         <h5 className={classes.address}>{address}</h5>
         <h5 className={classes.description}>{description}</h5>
+        {actions?.map((action, key) => (
+          <Button
+            onClick={action.onClick}
+            key={key}
+            className={classes.actionButton}
+            variant="contained"
+            color="primary"
+          >
+            {" "}
+            {action.name}{" "}
+          </Button>
+        ))}
       </PictureCard>
     );
   }, [
+    actions,
     address,
+    classes.actionButton,
     classes.address,
     classes.description,
     classes.name,

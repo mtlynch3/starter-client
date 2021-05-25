@@ -7,6 +7,10 @@ import CampusItem from "../campus_item";
 export type CampusListProps = {
   campuses: CampusModel[];
   filterable?: boolean;
+  actions?: Array<{
+    name: string;
+    onClick: (campus: CampusModel) => Promise<void>;
+  }>;
 };
 
 const useStyles = makeStyles({
@@ -18,7 +22,11 @@ const useStyles = makeStyles({
   },
 });
 
-const CampusList: React.FC<CampusListProps> = ({ campuses, filterable }) => {
+const CampusList: React.FC<CampusListProps> = ({
+  campuses,
+  filterable,
+  actions,
+}) => {
   const classes = useStyles();
   const [searchFilter, handleChangeSearchFilter] = useFormInput("");
 
@@ -32,8 +40,21 @@ const CampusList: React.FC<CampusListProps> = ({ campuses, filterable }) => {
   );
 
   const campusListView = useMemo(() => {
-    return filteredCampuses.map((campus) => <CampusItem key={campus.id} {...campus} />);
-  }, [filteredCampuses]);
+    return filteredCampuses.map((campus) => (
+      <div>
+        <CampusItem
+          key={campus.id}
+          {...campus}
+          actions={actions?.map((action) => ({
+            name: action.name,
+            onClick: async () => {
+              await action.onClick(campus);
+            },
+          }))}
+        />
+      </div>
+    ));
+  }, [actions, filteredCampuses]);
 
   return (
     <div>

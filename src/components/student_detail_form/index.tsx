@@ -1,9 +1,12 @@
 import { Button, makeStyles, TextField } from "@material-ui/core";
 import React, { useMemo, useState } from "react";
+import { CampusModel } from "../../api/campus";
 import { UpdatableStudentProps, StudentModel } from "../../api/student";
+import useEnrollStudent from "../../hooks/useEnrollStudent";
 import { useErrorAlert } from "../../hooks/useErrorAlert";
 import useFormInput from "../../hooks/useFormInput";
 import StudentItem from "../student_item";
+import CampusSelectFragment from "./campus_selector";
 
 export type StudentDetailFormSubmitOnClickProps = UpdatableStudentProps;
 
@@ -40,7 +43,13 @@ const StudentDetailForm: React.FC<StudentDetailFormProps> = ({
   );
   const [gpa, handleChangeGpa] = useFormInput(String(initialData?.gpa || ""));
   const [email, handleChangeEmail] = useFormInput(initialData?.email || "");
+
   const [loading, setLoading] = useState(false);
+  const [displayEnrollmentPrompt, setDisplayEnrollmentPrompt] = useState(false);
+  const { enroll } = useEnrollStudent();
+
+  const hideEnrollmentPrompt = () => setDisplayEnrollmentPrompt(false);
+
   const showError = useErrorAlert();
   const classes = useStyles();
 
@@ -64,8 +73,23 @@ const StudentDetailForm: React.FC<StudentDetailFormProps> = ({
     }
   };
 
+  const handleCampusEnrollment = async (campus: CampusModel) => {
+    if (initialData === undefined) {
+      // Impossible state
+      hideEnrollmentPrompt();
+      return;
+    }
+    await enroll(initialData.id, campus.id);
+    hideEnrollmentPrompt();
+  };
+
   return (
     <div>
+      <CampusSelectFragment
+        isOpen={displayEnrollmentPrompt}
+        handleClose={hideEnrollmentPrompt}
+        onCampusSelect={handleCampusEnrollment}
+      />
       <h4>Preview</h4>
       <StudentItem
         showDetailOnClick={false}
@@ -75,6 +99,16 @@ const StudentDetailForm: React.FC<StudentDetailFormProps> = ({
         gpa={gpaFloat}
         email={email}
         imageUrl={imageUrl}
+        actions={
+          initialData
+            ? [
+                {
+                  name: "Change Campus",
+                  onClick: async () => setDisplayEnrollmentPrompt(true),
+                },
+              ]
+            : undefined
+        }
       />
       <h4>Info</h4>
       <TextField

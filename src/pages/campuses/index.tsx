@@ -1,41 +1,13 @@
 import { LinearProgress } from "@material-ui/core";
-import React, { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import React from "react";
 import { useHistory } from "react-router";
-import CampusService, { CampusModel } from "../../api/campus";
 import CampusList from "../../components/campus_list";
 import NavbarLayout from "../../components/layout/navbar_layout";
-import { useErrorAlert } from "../../hooks/useErrorAlert";
-import { fetchAllCampuses } from "../../store/actions/actionCreators";
+import useGetAllCampuses from "../../hooks/useGetAllCampuses";
 
 const CampusesPage: React.FC = () => {
-  const campuses = useSelector<any>(
-    (state) => state.campuses.all || []
-  ) as CampusModel[];  
-  const [loading, setLoading] = useState(false);
-  const dispatch = useDispatch();
+  const {campuses, loading} = useGetAllCampuses()
   const history = useHistory();
-  const showError = useErrorAlert();
-
-  useEffect(() => {
-    const fetchCampuses = async () => {
-      if(campuses.length !== 0) {
-        return
-      }
-      try {
-        setLoading(true);
-        const result = await CampusService.RetrieveAllCampuses();
-        dispatch(fetchAllCampuses(result))
-      } catch (error) {
-        showError(error.message);
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchCampuses();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
 
   const handleClickCreate = () => {
     history.push("/campuses/create");
