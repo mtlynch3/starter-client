@@ -37,6 +37,7 @@ const StudentDetailPage: React.FC = () => {
         setInitialStudent(student);
       } catch (error) {
         showError(error.message);
+        history.goBack();
       }
     };
 
