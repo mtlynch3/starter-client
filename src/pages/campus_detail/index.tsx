@@ -1,6 +1,6 @@
 import { Grid, LinearProgress } from "@material-ui/core";
 import React, { useEffect, useMemo, useState } from "react";
-import { useParams } from "react-router";
+import { useHistory, useParams } from "react-router";
 import { CampusModel } from "../../api/campus";
 import { StudentModel } from "../../api/student";
 import NavbarLayout from "../../components/layout/navbar_layout";
@@ -8,6 +8,7 @@ import StudentList from "../../components/student_list";
 import { useErrorAlert } from "../../hooks/useErrorAlert";
 import useGetCampusById from "../../hooks/useGetCampusById";
 import useGetCampusStudents from "../../hooks/useGetCampusStudents";
+import useUnenrollStudent from "../../hooks/useUnenrollStudent";
 import CampusDetailBannerFragment from "./banner";
 import CampusDescriptionFragment from "./description";
 import CampusDetailEnrollModal from "./enroll";
@@ -21,6 +22,8 @@ const CampusDetailPage: React.FC = () => {
     useGetCampusStudents();
   const { id: campusId } = useParams<{ id: string }>();
   const showError = useErrorAlert();
+  const history = useHistory();
+  const { loading: loadingUnenrollStudent, unenroll } = useUnenrollStudent();
 
   useEffect(() => {
     const fetchCampus = async () => {
@@ -64,6 +67,22 @@ const CampusDetailPage: React.FC = () => {
     [enrolledStudents]
   );
 
+  const unenrollStudent = async (student: StudentModel) => {
+    try {
+      await unenroll(student.id);
+      const newEnrollStudentState = enrolledStudents?.filter(
+        (current) => current.id !== student.id
+      );
+      setEnrolledStudents(newEnrollStudentState);
+    } catch (error) {
+      showError(error.message);
+    }
+  };
+
+  const viewStudentInfo = async (student: StudentModel) => {
+    history.push("/student/" + student.id);
+  };
+
   return (
     <NavbarLayout
       container
@@ -85,8 +104,22 @@ const CampusDetailPage: React.FC = () => {
         <Grid container spacing={4}>
           <Grid item xs={9}>
             <CampusDescriptionFragment text={campus.description} />
+            {loadingUnenrollStudent && <LinearProgress />}
             {enrolledStudents && enrolledStudents.length ? (
-              <StudentList filterable students={enrolledStudents} />
+              <StudentList
+                filterable
+                students={enrolledStudents}
+                actions={[
+                  {
+                    name: "Profile",
+                    onClick: viewStudentInfo,
+                  },
+                  {
+                    name: "Remove",
+                    onClick: unenrollStudent,
+                  },
+                ]}
+              />
             ) : (
               <h3>No Students Enrolled</h3>
             )}
