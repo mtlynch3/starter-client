@@ -1,7 +1,7 @@
 import { useState } from "react"
 import { useDispatch } from "react-redux";
 import APIRequest from "../api/request";
-import { deleteStudent } from "../store/actions/actionCreators";
+import { deleteStudent as acDeleteStudent } from "../store/actions/actionCreators";
 
 export type DeleteStudentHook = () => {
   deleteStudent: (id: number) => Promise<void>,
@@ -17,7 +17,7 @@ const useDeleteStudent : DeleteStudentHook = () => {
     try {
       setLoading(true);
       await APIRequest.Delete(`/student/${id}`);
-      dispatch(deleteStudent(id));
+      dispatch(acDeleteStudent(id));
     } finally {
       setLoading(false);
     }
