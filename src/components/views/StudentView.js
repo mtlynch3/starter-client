@@ -63,7 +63,10 @@ const StudentView = (props) => {
 
       <h1>{student.firstname + " " + student.lastname}</h1>
       {student.campus.length !==0 ?
-      <h3>Campus: {student.campus.name}</h3>
+      <Link to={`/campus/${student.campus.id}`}>
+      <h3>{student.campus.name}</h3>
+    </Link>
+      // <h3>Campus: {student.campus.name}</h3>
       : 
       <h2> This student is not enrolled in a campus currently</h2>
       }
