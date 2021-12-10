@@ -95,14 +95,25 @@ const AllStudentsView = (props) => {
           </Link>
         </Toolbar>
       </AppBar>
+      <h1> Students: </h1> 
       {students.map((student) => {
         let name = student.firstname + " " + student.lastname;
         return (
-          <div key={student.id}>
+          <div> 
+          <ul>
+            <li key={student.id} style={{display: 'inline-block'}}>
           <Link to={`/student/${student.id}`}>
-            <h1>{name}</h1>
+            <h2>{name}</h2>
           </Link>
-          <button onClick={() => deleteStudent(student.id)}>Delete</button>
+          </li>
+          {/* <li style={{display: 'inline-block'}}> &emsp;</li> */}
+          <li style={{display: 'inline-block'}}>
+          &emsp;
+          <button onClick={() => deleteStudent(student.id)}>X</button> 
+          </li>
+
+
+          </ul>
           </div>
         );
       }
