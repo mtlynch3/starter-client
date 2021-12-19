@@ -40,6 +40,7 @@ const AllCampusesView = (props) => {
   const classes = useStyles();
 
   if (!props.allCampuses.length) {
+
     return(
     <div className={classes.root}>
     <AppBar position="static" elevation={0} className={classes.appBar}>
@@ -92,8 +93,15 @@ const AllCampusesView = (props) => {
           </Link>
           <p>{campus.description}</p>
         </div>
-      ))}
+      ))}   
+      <div>
+      <Link to={`/newcampus`}>
+          <button>Add Campus</button>
+        </Link>
+      </div>  
     </div>
+         
+
   );
 };
 

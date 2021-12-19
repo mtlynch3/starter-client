@@ -31,7 +31,7 @@ const useStyles = makeStyles( () => ({
   
 }));
 
-const NewStudentView = (props) => {
+const NewCampusView = (props) => {
   const {handleChange, handleSubmit } = props;
   const classes = useStyles();
 
@@ -45,19 +45,21 @@ const NewStudentView = (props) => {
         </div>
         <form style={{textAlign: 'center'}} onSubmit={(e) => handleSubmit(e)}>
           <label style= {{color:'#11153e', fontWeight: 'bold'}}>Name: </label>
-          <input type="text" name="Name" onChange ={(e) => handleChange(e)} />
+          <input type="text" name="firstname" onChange ={(e) => handleChange(e)} />
           <br/>
           <br/>
 
-          
-          <label style={{color:'#11153e', fontWeight: 'bold'}}>Last Name: </label>
-          <input type="text" name="Address" onChange={(e) => handleChange(e)} />
+          <label style={{color:'#11153e', fontWeight: 'bold'}}> Address: </label>
+          <input type="text" name="lastname" onChange={(e) => handleChange(e)} />
+          <br/>
+          <br/>
+          <label style={{color:'#11153e', fontWeight: 'bold'}}> Description: </label>
+          <input type="text" name="campusId" onChange={(e) => handleChange(e)} />
           <br/>
           <br/>
 
-
-          <label style={{color:'#11153e', fontWeight: 'bold'}}>campusId: </label>
-          <input type="text" name="ImageUrl" onChange={(e) => handleChange(e)} />
+          <label style={{color:'#11153e', fontWeight: 'bold'}}> ImageUrl: </label>
+          <input type="text" name="campusId" onChange={(e) => handleChange(e)} />
           <br/>
           <br/>
 
@@ -73,4 +75,4 @@ const NewStudentView = (props) => {
   )
 }
 
-export default NewStudentView;
+export default NewCampusView;
