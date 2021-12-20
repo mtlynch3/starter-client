@@ -65,7 +65,7 @@ const AllStudentsView = (props) => {
           </Toolbar>
         </AppBar>
       <p>There are no students.</p>
-      <Link to={`newstudent`}>
+      <Link to={`/newstudent`}>
         <button>Add New Student</button>
       </Link>
     </div>
