@@ -1,5 +1,5 @@
 import * as at from "../actions/actionTypes";
-import student from "./student";
+// import student from "./student";
 
 // REDUCER;
 const allCampuses = (state = [], action) => {
