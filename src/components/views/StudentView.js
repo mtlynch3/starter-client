@@ -62,7 +62,7 @@ const StudentView = (props) => {
       </AppBar>
 
       <h1>{student.firstname + " " + student.lastname}</h1>
-      {student.campus.length !==0 ?
+      {student.campus != null ?
       <Link to={`/campus/${student.campus.id}`}>
       <h3>{student.campus.name}</h3>
     </Link>
@@ -72,7 +72,11 @@ const StudentView = (props) => {
       }
       <h3>{student.email}</h3>
       <img src={student.imageUrl} alt = ""/>
-      <h3> GPA: {student.gpa} </h3>
+      {student.gpa != null ?
+      <h3> GPA: {student.gpa} </h3> 
+      : 
+      <br></br>
+      }
 
     </div>
   );
