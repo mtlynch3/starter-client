@@ -38,6 +38,7 @@ const useStyles = makeStyles(theme => ({
 
 const AllCampusesView = (props) => {
   const classes = useStyles();
+  const {campuses, deleteCampus} = props;
 
   if (!props.allCampuses.length) {
 
@@ -90,14 +91,36 @@ const AllCampusesView = (props) => {
           </Link>
         </Toolbar>
       </AppBar>     
-      {props.allCampuses.map((campus) => (
-        <div key={campus.id}>
+      <h1> Campuses: </h1> 
+      {props.allCampuses.map((campus) => {
+        return (
+          <div> 
+          <ul>
+            <li key={campus.id} style={{display: 'inline-block'}}>
           <Link to={`/campus/${campus.id}`}>
-            <h1>{campus.name}</h1>
+            <h2>{campus.name}</h2>
           </Link>
-          <p>{campus.description}</p>
-        </div>
-      ))}   
+          </li>
+          {/* <li style={{display: 'inline-block'}}> &emsp;</li> */}
+          <li key={campus.id + "t"}style={{display: 'inline-block'}}>
+          &emsp;
+          <button onClick={() => deleteCampus(campus.id)}>X</button> 
+          </li>
+
+
+          </ul>
+          </div>
+        );
+      }
+      // (
+        // <div key={campus.id}>
+        //   <Link to={`/campus/${campus.id}`}>
+        //     <h1>{campus.name}</h1>
+        //   </Link>
+        //   <p>{campus.description}</p>
+        // </div>
+      // )
+      )}   
       <div>
       <Link to={`/newcampus`}>
           <button>Add Campus</button>
