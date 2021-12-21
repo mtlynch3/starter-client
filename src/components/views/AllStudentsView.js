@@ -107,7 +107,7 @@ const AllStudentsView = (props) => {
           </Link>
           </li>
           {/* <li style={{display: 'inline-block'}}> &emsp;</li> */}
-          <li style={{display: 'inline-block'}}>
+          <li key={student.id + "t"} style={{display: 'inline-block'}}>
           &emsp;
           <button onClick={() => deleteStudent(student.id)}>X</button> 
           </li>
