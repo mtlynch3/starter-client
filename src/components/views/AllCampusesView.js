@@ -5,6 +5,7 @@ const AllCampusesView = (props) => {
   if (!props.allCampuses.length) {
     return <div>There are no campuses.</div>;
   }
+  const {delCampus} = props;
 
   return (
     <div>
@@ -14,8 +15,10 @@ const AllCampusesView = (props) => {
             <h1>{campus.name}</h1>
           </Link>
           <p>{campus.description}</p>
+          <button onClick={() => delCampus(campus.id)}>Remove</button>
         </div>
       ))}
+      <Link to={`/newcampus`}><button>Add Campus</button></Link>
     </div>
   );
 };
